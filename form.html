@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is an example of a meta description. 
+    This will often show up in search results so it is important to write a 
+    high quality description for each page of a website">
+    <title>Portfolio :: Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
+</head>
+
+<body>
+    <header>
+        <h1 class="animated slideInDown">Christopher Ference's Portfolio</h1>
+    </header>
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="table.html">Table</a></li>
+            <li><a href="form.html">Form</a></li>
+            <li><a href="multimedia.html">Multimedia</a></li>
+            <li><a href="javascript.html">JavaScript</a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- This is the main content in the middle-->
+        <h2>Contact Me</h2>
+        <!-- this form will send to my student email -->
+        <div class="form-container">
+            <form action="https://formspree.io/f/mzbogvkn" method="POST" id="my-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="first_name">*First Name</label>
+                    <input type="text" id="first_name" name="first_name" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">*Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">*Email</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="phone" id="phone" name="phone" />
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Comments</label>
+                    <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+                </div>
+
+                <br>
+                <button id="form-button" type="submit">Submit</button>
+            </form>
+        </div>
+        <br>
+        <div id="status"></div>
+    </main>
+    <!-- bottom of the page content -->
+    <div class="clear"></div> <!--this is needed to show the main content at the bottom of the page that would be hidden without it-->
+    <footer>
+        <p>
+            <a href="mailto:is0459wn@go.minnstate.edu"><img src="images/icons8-email-64.png" alt="email-icon" height="50" width="auto"></a>
+            <a href="tel:123-456-7890"><img src="images/icons8-call-64.png" alt="call-icon" height="50" width="auto"></a>
+            <a href="https://www.linkedin.com/in/cference8/" target="_blank"><img src="images/icons8-linkedin-50.png" alt="sms-icon" height="50" width="auto"></a>
+        </p>
+        <small>&copy; Chris Ference. All rights reserved.</small>
+    </footer>
+
+    <script>
+        // Form script
+        window.addEventListener('DOMContentLoaded', function () {
+            // get the form elements defined in your form HTML above
+
+            var form = document.getElementById('my-form');
+            // var button = document.getElementById("my-form-button");
+            var status = document.getElementById('status');
+
+            // Success and Error functions for after the form is submitted
+
+            function success() {
+                form.reset();
+                status.classList.add('success');
+                status.innerHTML = 'Thanks!';
+            }
+
+            function error() {
+                status.classList.add('error');
+                status.innerHTML = 'Oops! There was a problem.';
+            }
+
+            // handle the form submission event
+
+            form.addEventListener('submit', function (ev) {
+                ev.preventDefault();
+                var data = new FormData(form);
+                ajax(form.method, form.action, data, success, error);
+            });
+        });
+
+        // helper function for sending an AJAX request
+
+        function ajax(method, url, data, success, error) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                if (xhr.status === 200) {
+                    success(xhr.response, xhr.responseType);
+                } else {
+                    error(xhr.status, xhr.response, xhr.responseType);
+                }
+            };
+            xhr.send(data);
+        }
+    </script>
+</body>
+
+</html>

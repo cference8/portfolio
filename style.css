@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #FAF9F6;
+  font-family: 'Fredoka', sans-serif;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  padding: 1rem;
+}
+
+h6 {
+  text-align: center;
+}
+
+/* resume.html for the ul li items */
+.skills-columns {
+  display: inline-block;
+  width: 240px;
+  vertical-align: top;
+}
+
+/* Navigation Bar CSS*/
+nav {
+  background-color: #5D9B9B;
+  border-top: 2px solid darkblue;
+  border-bottom: 2px solid darkblue;
+}
+
+nav ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+nav li {
+  display: inline;
+}
+
+nav a {
+  text-decoration: none;
+  padding-right: 10px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+nav a:link {
+  color: white;
+}
+
+nav a:visited {
+  color: white;
+}
+
+nav a:hover {
+  color: gray;
+}
+
+nav a:active {
+  color: black;
+}
+
+main {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+/* this is needed to show content at the bottom of the page that would be hidden without it*/
+.clear {
+  clear: both; 
+  height: 60px;
+  padding-top: 100px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #5D9B9B;
+  text-align: center;
+  border-top: 1px solid gray;
+  padding: 10px;
+  clear: left;
+}
+
+a:link {
+  color: blue;
+}
+
+a:visited {
+  color: purple;
+}
+
+a:hover {
+  color: purple;
+}
+
+a:active {
+  color: black;
+}
+
+#aboutMePhoto img {
+  border-radius: 50px 50px 50px 50px;
+}
+
+#aboutMePhoto {
+  float: left;
+  padding-top: 60px;
+  padding-right: 20px;
+  padding-bottom: 200px;
+  display: block;
+}
+
+
+
+#about {
+  padding: 20px;
+  margin: 20px;
+}
+
+/* javascript.html flappy bird */
+canvas {
+  border: 1px solid #d3d3d3;
+  background-image: url("images/4622688.jpg");
+  background-size: auto;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 2px 2px 6px black;
+  border-radius: 10px;
+}
+
+.myButton {
+  padding: 0.7rem 2rem;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #5D9B9B;
+  backface-visibility: hidden;
+  border-radius: 3rem;
+  border: 2px solid darkblue;
+  text-shadow: 1px 1px 2px #000;
+  cursor: pointer;
+}
+
+hr {
+  margin: 50px;
+}
+
+.myButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+#line-off {
+  text-decoration: none;
+}
+
+.game-controls {
+  padding-top: 20px;
+  text-align: center;
+}
+
+/* CSS table.html */
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+
+table thead tr {
+  background-color: #5D9B9B;
+  color: #ffffff;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #5D9B9B;
+}
+
+table tbody tr.active-row {
+  font-weight: bold;
+  color: #5D9B9B;
+}
+
+/* CSS form.html */
+.form-container {
+  padding: 1rem;
+}
+
+.form-group {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 5px;
+  font-size: 18px;
+  border: 1px solid rgba(128, 128, 128, 0, 199);
+  margin-top: 5px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+#form-button {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 20px;
+  font-size: 24px;
+  border-radius: 8px;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+  text-align: center;
+  cursor: pointer;
+  background-color: #5D9B9B;
+  margin-top: 10px;
+  transition: 0.3s ease background-color;
+}
+
+#status {
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+#status.success {
+  background-color: rgb(211, 250, 153);
+  text-shadow: 1px 1px 2px #000;
+  animation: status 4s ease forwards;
+}
+
+#status.error {
+  background-color: rgb(250, 129, 92);
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+  animation: status 4s ease forwards;
+}
+
+@keyframes status {
+  0% {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  90% {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+
+
+
+/* CSS Adjustments for Tablets */
+@media only screen and (max-width: 1024px) {
+  h1 {
+    font-size: 2em;
+  }
+}
+
+/* CSS Adjustments for Smartphones */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 1.5em;
+  }
+}
