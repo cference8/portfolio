@@ -335,6 +335,12 @@ textarea {
     font-size: 2em;
   }
 
+  .scroll.false {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
   #aboutMePhoto {
     position: relative;
     z-index: -1;
@@ -407,6 +413,12 @@ textarea {
     font-size: 1.5em;
   }
 
+  .scroll.false {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
   #aboutMePhoto {
     position: relative;
     z-index: -1;
@@ -438,12 +450,6 @@ textarea {
     transition: 0.3s;
     box-shadow:
       0 10px 27px rgba(0, 0, 0, 0.05);
-  }
-
-  .scroll.false {
-    margin: 0;
-    height: 100%;
-    overflow: hidden;
   }
 
   .nav-menu.active {
