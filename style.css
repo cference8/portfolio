@@ -49,6 +49,8 @@ p {
 
 /* resume.html for the ul li items */
 .skills-columns {
+  padding-top: 20px;
+  padding-left: 70px;
   display: inline-block;
   width: 240px;
   vertical-align: top;
