@@ -46,10 +46,6 @@ p {
   padding: 10px;
 }
 
-.display {
-  text-align: center;
-  display: none;
-}
 
 /* resume.html for the ul li items */
 .skills-columns {
@@ -59,13 +55,8 @@ p {
 }
 
 /* Navigation Bar CSS*/
-header {
-  padding-bottom: 20px;
-}
-
 nav {
   background-color: #5D9B9B;
-  border-top: 2px solid darkblue;
   border-bottom: 2px solid darkblue;
 }
 
@@ -92,7 +83,7 @@ nav a {
 }
 
 .nav-item {
-  margin-left: 5rem;
+  margin-left: 2rem;
 }
 
 .nav-link {
@@ -114,7 +105,7 @@ nav a {
 .nav-logo {
   font-size: 2.1rem;
   font-weight: 500;
-  color: #482ff7;
+  color: #2C3E50;
 }
 
 .hamburger {
@@ -162,8 +153,6 @@ footer {
   padding-bottom: 200px;
   display: block;
 }
-
-
 
 #about {
   padding: 20px;
@@ -341,14 +330,12 @@ textarea {
     font-size: 2em;
   }
 
-  #print-button {
-    display: none;
+  iframe {
+    height: 300px;
   }
 
-  .display {
-    text-align: center;
-    display: block;
-    color: red;
+  #print-button {
+    display: none;
   }
 
   canvas {
@@ -393,6 +380,7 @@ textarea {
     transition: 0.3s;
     box-shadow:
       0 10px 27px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
   }
 
   .nav-menu.active {
@@ -438,10 +426,8 @@ textarea {
     display: none;
   }
 
-  .display {
-    text-align: center;
-    display: block;
-    color: red;
+  table {
+    font-size: 10px;
   }
 
   canvas {
@@ -450,7 +436,7 @@ textarea {
   }
 
   .myButton {
-      padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.5rem;
   }
 
   .scroll.false {
@@ -497,7 +483,8 @@ textarea {
   }
 
   .nav-item {
-    margin: 2.5rem 0;
+    margin: 1rem 0;
+
   }
 
   .nav-link {
@@ -521,5 +508,57 @@ textarea {
 
   .hamburger.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+@media (max-width:1233px) {
+  .nav-logo {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width:1165px) {
+  .nav-logo {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width:1144px) {
+  .nav-logo {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width:1121px) {
+  .nav-logo {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width:1097px) {
+  .nav-logo {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width:1079px) {
+  .nav-logo {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width:1126px) {
+  .nav-logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width:336px) {
+  .nav-logo {
+    font-size: 1rem;
   }
 }

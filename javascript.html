@@ -10,42 +10,40 @@
     <title>Portfolio :: JavaScript</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
 </head>
 
 <body onload="startGame()">
+    <!-- NAVIGATION HEADER -->
     <header>
-        <h1 class="animated slideInDown">Christopher Ference's Portfolio</h1>
+        <nav class="navbar">
+            <a href="#" class="nav-logo">Christopher Ference's Portfolio</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="resume.html" class="nav-link">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a href="table.html" class="nav-link">Table</a>
+                </li>
+                <li class="nav-item">
+                    <a href="form.html" class="nav-link">Form</a>
+                </li>
+                <li class="nav-item">
+                    <a href="multimedia.html" class="nav-link">Multimedia</a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript.html" class="nav-link">JavaScript</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
     </header>
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <a href="#" class="nav-logo"></a>
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a href="index.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="resume.html" class="nav-link">Resume</a>
-            </li>
-            <li class="nav-item">
-                <a href="table.html" class="nav-link">Table</a>
-            </li>
-            <li class="nav-item">
-                <a href="form.html" class="nav-link">Form</a>
-            </li>
-            <li class="nav-item">
-                <a href="multimedia.html" class="nav-link">Multimedia</a>
-            </li>
-            <li class="nav-item">
-                <a href="javascript.html" class="nav-link">JavaScript</a>
-            </li>
-        </ul>
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-    </nav>
     <main>
         <!-- This is the main content of the page-->
         <h2>JavaScript Flappy Bird Game</h2>
@@ -55,14 +53,11 @@
 
 
         <h3 class="center-text">Use the FLAP WINGS button to stay in the air. How long can you fly?</h3>
-        <div class="display">
-            <p>This game is intended for pc/mac browser thus it is not optimized to work on mobile or tablet.</p>
-        </div>
 
         <div id="game"></div>
         <div class="game-controls">
             <button class="myButton" onkeydown="accelerate(-0.2)" onkeyup="accelerate(0.05)"
-                onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">FLAP WINGS</button>
+                onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" ontouchstart="accelerate(-0.2)" ontouchend="accelerate(0.05)">FLAP WINGS</button>
             <a href="" id="line-off"><button class="myButton">PLAY AGAIN</button></a>
         </div>
         <hr>
