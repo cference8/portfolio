@@ -41,7 +41,7 @@ h6 {
   box-sizing: border-box;
 }
 
-p{
+p {
   padding: 10px;
 }
 
@@ -89,19 +89,19 @@ nav a {
   margin-left: 5rem;
 }
 
-.nav-link{
+.nav-link {
   font-size: 1.6rem;
   font-weight: 400;
   color: white;
   text-shadow: 1px 1px 2px #000;
-  
+
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: gray;
 }
 
-.nav-link:active{
+.nav-link:active {
   color: #000;
 }
 
@@ -204,7 +204,7 @@ canvas {
 
 .game-controls {
   padding-top: 20px;
-  padding-bottom: 20px ;
+  padding-bottom: 20px;
   text-align: center;
 }
 
@@ -349,10 +349,11 @@ textarea {
     box-shadow: 2px 2px 6px black;
   }
 
-  #aboutMePhoto img{
-    width: 100%; 
+  #aboutMePhoto img {
+    width: 100%;
     height: auto;
   }
+
   .nav-menu {
     z-index: 1;
     position: fixed;
@@ -420,10 +421,11 @@ textarea {
     box-shadow: 2px 2px 6px black;
   }
 
-  #aboutMePhoto img{
-    width: 100%; 
+  #aboutMePhoto img {
+    width: 100%;
     height: auto;
   }
+
   .nav-menu {
     z-index: 1;
     position: fixed;
@@ -436,6 +438,12 @@ textarea {
     transition: 0.3s;
     box-shadow:
       0 10px 27px rgba(0, 0, 0, 0.05);
+  }
+
+  .scroll.false {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
   }
 
   .nav-menu.active {
