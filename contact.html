@@ -7,7 +7,7 @@
     <meta name="description" content="This is an example of a meta description. 
     This will often show up in search results so it is important to write a 
     high quality description for each page of a website">
-    <title>Portfolio :: Form</title>
+    <title>Portfolio :: Contact</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -16,7 +16,7 @@
     <!-- NAVIGATION HEADER -->
     <header>
         <nav class="navbar">
-            <a href="#" class="nav-logo">Christopher Ference's Portfolio</a>
+            <a href="index.html" class="nav-logo">Christopher Ference's Portfolio</a>
             <ul class="nav-menu">
                 <li class="nav-item">
                     <a href="index.html" class="nav-link">Home</a>
@@ -25,16 +25,16 @@
                     <a href="resume.html" class="nav-link">Resume</a>
                 </li>
                 <li class="nav-item">
-                    <a href="table.html" class="nav-link">Table</a>
-                </li>
-                <li class="nav-item">
-                    <a href="form.html" class="nav-link">Form</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a href="multimedia.html" class="nav-link">Multimedia</a>
                 </li>
                 <li class="nav-item">
                     <a href="javascript.html" class="nav-link">JavaScript</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -107,12 +107,13 @@
             function success() {
                 form.reset();
                 status.classList.add('success');
-                status.innerHTML = 'Thanks!';
+                status.innerHTML = "Thanks for your submission!";
             }
 
             function error() {
                 status.classList.add('error');
-                status.innerHTML = 'Oops! There was a problem.';
+                status.innerHTML = "Oops! There was a problem submitting your form";
+                alert("Try again");
             }
 
             // handle the form submission event
