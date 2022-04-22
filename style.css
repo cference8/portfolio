@@ -82,11 +82,11 @@ h6 {
 
 .big-3 i.fa{
 	font-size: 6em;
-	color: #082524;
+	color: #76D0C9;
 }
 
 button {
-  background-color: #082524;
+  background-color: #76D0C9;
   color: white;
   padding: 3px 15px;
   border-radius: 3px;
@@ -395,10 +395,6 @@ textarea {
 @media only screen and (max-width: 1024px) {
   h1 {
     font-size: 2em;
-  }
-
-  iframe {
-    height: 300px;
   }
 
   #print-button {
