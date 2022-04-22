@@ -105,6 +105,10 @@ footer p {
   padding-left: 0;
 }
 
+a small {
+  color: #000;
+}
+
 /*  https://css-tricks.com/examples/hrs/ */
 hr {
 	margin: 60px auto;
