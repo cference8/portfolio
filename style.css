@@ -399,6 +399,7 @@ textarea {
 @media only screen and (max-width: 768px) {
 
   .nav-menu {
+    margin-top: 10px;
     display:block;
     justify-content: unset;
     align-items: center;
