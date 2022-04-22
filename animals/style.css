@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Barrio&family=Lato:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Square+Peg&family=Updock&display=swap');
+
+body {
+    background-color: #26453E;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0;
+}
+
+main{
+	max-width: 1200px;
+	margin:0 auto;
+}
+
+h1 {
+    font-size: 80px;
+    padding: 20px;
+    color: whitesmoke;
+    text-align: center;
+    font-family: 'Square Peg', cursive;
+}
+
+h4 {
+    text-shadow: 1px 1px 2px #000;
+    color: whitesmoke;
+}
+
+p {
+    color: whitesmoke;
+}
+
+.gallery .preview {
+    width: 100%
+}
+
+.gallery .gallery-thumbnails img {
+    width: 100px;
+    height: 75px;
+    margin: 3px 10px 10px 0;
+}
+
+.gallery .gallery-thumbnails img:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+.gallery .preview img#preview {
+    padding: 1px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+.middle {
+    padding: 20px;
+}
+
+.middle-text {
+    padding-top: 20px;
+}
+
+.gallery-thumbnails {
+    padding-top: 10px;
+}
+
+.preview {
+    padding: 20px;
+}
+
+img {
+    box-shadow: 2px 2px 6px black;
+}
+
+.fa-camera-retro {
+    font-size: 100px;
+    text-align: center;
+    display: block;
+    margin-left: 40px;
+    margin-top: 10px;
+    color: brown;
+
+}
+
+i {
+    text-shadow: 1px 1px 2px #000;
+}
+
+footer {
+    background-color: #343a40;
+}
+
+.footer1000 {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+small {
+    color: whitesmoke;
+}
+
+.col-sm-4 h3{
+    text-align:center;
+}
+
+/* Navigation Bar CSS*/
+nav {
+    background-color: lightgray;
+    border-bottom: 1px solid white;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+nav li {
+    display: inline;
+}
+
+nav a {
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+nav a:link {
+    color: blue;
+}
+
+nav a:visited {
+    color: blue;
+}
+
+nav a:hover {
+    color: gray;
+}
+
+nav a:active {
+    color: black;
+}
+
+main {
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+footer {
+    text-align: center;
+    border-top: 1px solid gray;
+    padding: 10px;
+}
+
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: lightblue;
+}
+
+a:hover {
+    color: #158b70;
+}
+
+a:active {
+    color: black;
+}
+
+
+/* CSS Adjustments for Tablets */
+@media only screen and (max-width: 1024px) {
+    h1 {
+        font-size: 4em;
+    }
+
+    .fa-camera-retro {
+        font-size: 70px;
+    }
+
+
+}
+
+/* CSS Adjustments for Smartphones */
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 2.5em;
+    }
+}
