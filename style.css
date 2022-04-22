@@ -7,6 +7,23 @@ body {
   overflow-x: hidden;
 }
 
+p {
+  font-size: 20px;
+}
+
+#printableArea h4 {
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+#printableArea p {
+  padding: 10px;
+}
+
+#printableArea hr {
+  margin: 0;
+}
+
 .header {
   text-align: center;
   color: white;
@@ -15,6 +32,10 @@ body {
 
 ul li {
   text-decoration: none;
+}
+
+ul {
+  padding-left: 0;
 }
 
 body {
@@ -47,16 +68,47 @@ h6 {
   text-align: center;
 }
 
-* {
+.example {
+  box-shadow: 2px 2px 2px gray;
+	margin: 10px;
+}
+
+.example:hover {
+  opacity: 0.8;
+}
+
+.big-3{
+	text-align:center;
+}
+
+.big-3 i.fa{
+	font-size: 6em;
+	color: #082524;
+}
+
+button {
+  background-color: #082524;
+  color: white;
+  padding: 3px 15px;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: #E5D5C0;
+  text-shadow: 1px 1px 2px #000;
+}
+
+footer p {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
-p {
-  padding: 10px;
+/*  https://css-tricks.com/examples/hrs/ */
+hr {
+	margin: 60px auto;
+     border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
-
 
 /* resume.html for the ul li items */
 
@@ -68,7 +120,7 @@ p {
   padding-top: 20px;
   padding-left: 70px;
   display: inline-block;
-  width: 240px;
+  width: 200px;
   vertical-align: top;
 }
 
@@ -122,7 +174,6 @@ nav a {
   font-weight: 400;
   color: white;
   text-shadow: 1px 1px 2px #000;
-
 }
 
 .nav-link:hover {
@@ -167,19 +218,6 @@ i:hover {
 #aboutMePhoto img {
   box-shadow: 2px 2px 6px black;
   border-radius: 50px;
-}
-
-#aboutMePhoto {
-  float: left;
-  padding-top: 40px;
-  padding-right: 20px;
-  padding-bottom: 200px;
-  display: block;
-}
-
-#about {
-  padding: 20px;
-  margin: 20px;
 }
 
 /* javascript.html flappy bird */
@@ -369,22 +407,13 @@ textarea {
     height: auto;
   }
 
-  .scroll.false {
-    margin: 0;
-    height: 100%;
-    overflow: hidden;
-  }
-
   #aboutMePhoto {
-    position: relative;
-    z-index: -1;
     width: 200px;
     height: 200px;
     border-radius: 50%;
     overflow: hidden;
     padding: 0;
     text-align: center;
-    float: none;
     margin: 0 auto;
     box-shadow: 2px 2px 6px black;
   }
@@ -402,7 +431,6 @@ textarea {
     text-align: center;
     display:block;
     justify-content: unset;
-    align-items: center;
   }
 
   .nav-link {
