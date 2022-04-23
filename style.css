@@ -109,6 +109,10 @@ a small {
   color: #000;
 }
 
+iframe {
+  box-shadow: 2px 2px 6px black;
+}
+
 /*  https://css-tricks.com/examples/hrs/ */
 hr {
 	margin: 60px auto;
