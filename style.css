@@ -430,6 +430,28 @@ textarea {
 /* CSS Adjustments for Smartphones */
 @media only screen and (max-width: 768px) {
 
+  #iframe {
+    display: block;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 2.0rem;
+  }
+
+  h3 {
+font-weight: bold;
+    font-size: 1.7rem;
+  }
+
+  label {
+    font-size: 1.5rem;
+  }
+
   .nav-menu {
     text-align: center;
     display:block;
@@ -477,7 +499,7 @@ textarea {
   }
 
   canvas {
-    width: 350px;
+    width: 100%;
     height: auto;
   }
 
