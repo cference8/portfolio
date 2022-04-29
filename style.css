@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 html,
 body {
@@ -179,7 +180,8 @@ nav a {
 }
 
 .nav-link {
-  font-size: 2.8rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.9rem;
   font-weight: 400;
   color: white;
   text-shadow: 1px 1px 2px #000;
@@ -509,6 +511,13 @@ font-weight: bold;
   #aboutMePhoto img {
     width: 100%;
     height: auto;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+
+  .nav-link {
+    font-size: 1.4rem;
   }
 }
 
