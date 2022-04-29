@@ -11,16 +11,16 @@ p {
   font-size: 20px;
 }
 
-#printableArea h4 {
+#resume h4 {
   font-weight: bold;
   padding-left: 10px;
 }
 
-#printableArea p {
+#resume p {
   padding: 10px;
 }
 
-#printableArea hr {
+#resume hr {
   margin: 0;
 }
 
@@ -122,10 +122,6 @@ hr {
 }
 
 /* resume.html for the ul li items */
-
-#printableArea {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
 
 .skills-columns {
   padding-top: 20px;
@@ -401,10 +397,6 @@ textarea {
     font-size: 2em;
   }
 
-  #print-button {
-    display: none;
-  }
-
   #aboutMePhoto {
     width: 200px;
     height: 200px;
@@ -483,10 +475,6 @@ font-weight: bold;
 
   h1 {
     font-size: 3em;
-  }
-
-  #print-button {
-    display: none;
   }
 
   table {
