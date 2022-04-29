@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/8a2fe61e31.js" crossorigin="anonymous"></script>
-    
+
     <title>Portfolio :: Contact</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -70,40 +70,43 @@
     <main>
         <div class="container">
             <!-- this form will send to my student email -->
-            <div class="form-container">
-                <h2>Contact Me</h2>
-                <form action="https://formspree.io/f/mzbogvkn" method="POST" id="my-form" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="first_name">*First Name</label>
-                        <input type="text" id="first_name" name="first_name" />
-                    </div>
+            <div class="col-sm-12">
+                <div class="form-container">
+                    <h2>Contact Me</h2>
+                    <form action="https://formspree.io/f/mzbogvkn" method="POST" id="my-form"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="first_name">*First Name</label>
+                            <input type="text" id="first_name" name="first_name" />
+                        </div>
 
-                    <div class="form-group">
-                        <label for="last_name">*Last Name</label>
-                        <input type="text" id="last_name" name="last_name" />
-                    </div>
+                        <div class="form-group">
+                            <label for="last_name">*Last Name</label>
+                            <input type="text" id="last_name" name="last_name" />
+                        </div>
 
-                    <div class="form-group">
-                        <label for="email">*Email</label>
-                        <input type="email" id="email" name="email" />
-                    </div>
+                        <div class="form-group">
+                            <label for="email">*Email</label>
+                            <input type="email" id="email" name="email" />
+                        </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="phone" id="phone" name="phone" />
-                    </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="phone" id="phone" name="phone" />
+                        </div>
 
-                    <div class="form-group">
-                        <label for="comments">Comments</label>
-                        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label for="comments">Comments</label>
+                            <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+                        </div>
 
-                    <br>
-                    <button id="form-button" type="submit">Submit</button>
-                </form>
+                        <br>
+                        <button id="form-button" type="submit">Submit</button>
+                    </form>
+                </div>
+                <br>
+                <div id="status"></div>
             </div>
-            <br>
-            <div id="status"></div>
         </div>
 
     </main>
@@ -116,7 +119,8 @@
             <a href="https://github.com/cference8" target="_blank"><i class="fa-brands fa-github-square"></i></a>
             <a href="https://www.linkedin.com/in/cference8/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
         </p>
-        <a href=" " style="text-decoration: none;"><small>&copy; Christopher R. Ference. All rights reserved.</small></a>
+        <a href=" " style="text-decoration: none;"><small>&copy; Christopher R. Ference. All rights
+                reserved.</small></a>
     </footer>
 
     <script>

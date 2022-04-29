@@ -235,7 +235,7 @@ i:hover {
 canvas {
   border: 1px solid #d3d3d3;
   background-image: url("images/4622688.jpg");
-  background-size: auto;
+  background-size: 100% 100%;
   margin: 0 auto;
   display: block;
   box-shadow: 2px 2px 6px black;
@@ -405,11 +405,6 @@ textarea {
     display: none;
   }
 
-  canvas {
-    width: 500px;
-    height: auto;
-  }
-
   #aboutMePhoto {
     width: 200px;
     height: 200px;
@@ -526,3 +521,5 @@ font-weight: bold;
     height: auto;
   }
 }
+
+
