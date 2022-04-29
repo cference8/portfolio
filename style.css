@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 html,
 body {
@@ -79,13 +78,13 @@ h6 {
   opacity: 0.8;
 }
 
-.big-3{
-	text-align:center;
+.big-3 {
+  text-align: center;
 }
 
-.big-3 i.fa{
-	font-size: 6em;
-	color: #76D0C9;
+.big-3 i.fa {
+  font-size: 6em;
+  color: #76D0C9;
 }
 
 button {
@@ -118,10 +117,10 @@ iframe {
 
 /*  https://css-tricks.com/examples/hrs/ */
 hr {
-	margin: 60px auto;
-     border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  margin: 60px auto;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
 /* resume.html for the ul li items */
@@ -189,7 +188,7 @@ nav a {
 .nav-link:hover {
   text-decoration: none;
   color: #E5D5C0;
-} 
+}
 
 /* this is needed to show content at the bottom of the page that would be hidden without it*/
 .clear {
@@ -434,7 +433,7 @@ textarea {
   }
 
   h3 {
-font-weight: bold;
+    font-weight: bold;
     font-size: 1.7rem;
   }
 
@@ -444,7 +443,7 @@ font-weight: bold;
 
   .nav-menu {
     text-align: center;
-    display:block;
+    display: block;
     justify-content: unset;
   }
 
@@ -512,5 +511,3 @@ font-weight: bold;
     height: auto;
   }
 }
-
-
