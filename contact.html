@@ -34,6 +34,17 @@
 
         gtag('config', 'G-WDN90LN121');
     </script>
+
+    <!--Formspree.io reCaptcha to prevent bot submissions-->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfOYbIhAAAAAL-wCmHyixBntT4arPashf38_0c7"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LfOYbIhAAAAAL-wCmHyixBntT4arPashf38_0c7', {action: 'submit'}).then(function (token) {
+                console.info("got token: " + token);
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -109,9 +120,9 @@
                             <label for="comments">Comments</label>
                             <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
                         </div>
-
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                         <br>
-                        <button id="form-button" type="submit">Submit</button>
+                        <button id="form-button" type="submit" value="submit">Submit</button>
                     </form>
                 </div>
                 <br>
