@@ -1,0 +1,256 @@
+/* fonts */
+@font-face {
+  font-family: AvenirLight;
+  src: url(Avenir-Light.ttf);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Caudex:wght@700&family=Sigmar&display=swap');
+/* Global styles */
+
+body {
+  background-color: rgb(248, 255, 199);
+}
+  
+  /* Header styles */
+  header {
+    background-color: rgb(248,255,199);
+    padding: 25px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .navbar-nav .nav-link {
+    color: white!important;
+  }
+  
+  .nav-link:hover {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .navbar-nav .nav-item.active .nav-link {
+    color: rgb(248, 255, 199)!important;
+  }
+  
+  .navbar {
+    background-color: #000!important;
+  }
+
+  #navbarNav {
+    padding-right: 50px;
+  }
+
+  .navbar-brand {
+    font-family: 'Caudex', serif;
+    font-size: 35px;
+    padding-left: 50px;
+  }
+  
+  /* Main styles */
+  main {
+    margin: 0 auto;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  h2 {
+    font-family: 'Caudex', serif;
+    font-weight: bolder;
+  }
+
+  p {
+    font-family: AvenirLight;
+  }
+
+  #reviews {
+    font-family: 'Sigmar', cursive;
+    font-weight: bold;
+  }
+
+  #hours {
+    background-image: url('../images/hairtools-dark.jpg');
+    height: 500px;
+    width: 100%;
+  }
+
+  #tcl-bg {
+    background-image: url('../images/tcl-3.jpg');
+    height: 700px;
+    width: 100%;
+  }
+
+  .bg-dark {
+    background-color: #000!important;
+  }
+
+  h1 {
+    font-family: 'Caudex', serif;
+    font-weight: 700;
+  }
+
+  .lead {
+    color: white;
+    font-family: AvenirLight;
+  }
+
+  .about {
+    background-color: #f0e5d5!important;
+    font-size: 1.3em;
+    top: -550px; 
+    right: -500px; 
+    width: 500px;
+    position: relative;
+  }
+
+  .about p {
+    color: rgb(94,109,85);
+  }
+
+  .about h1 {
+    font-family: 'Caudex', serif;
+    font-size: 40px;
+    text-shadow: 1px 1px 2px white;
+  }
+
+  .jumbotron {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 140px;
+    background-image: url('../images/dog-grooming2.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    height: 800px;
+  }
+
+
+  #main-logo {
+    border: 2px solid white;
+    border-radius: 50%;
+  }
+  
+  /* Footer styles */
+  footer {
+    height: 180px;
+    display: flex;
+    align-items: center;
+  }
+  
+  footer p {
+    margin-bottom: 0;
+  }
+
+  #copyright {
+    color: rgb(94,109,85);
+    padding-top: 20px;
+  }
+
+  .social-media-icons {
+    font-size: 20px;
+    margin-left: 20px;
+ }
+ 
+ .social-media-icons a {
+    color: #333;
+    margin-left: 10px;
+    margin-right: 10px;
+ }
+ 
+ .social-media-icons a:hover {
+    color: #777;
+ }
+
+ #contact-h1 {
+  padding-left: 300px;
+ }
+
+
+
+ @media only screen and (max-width: 768px) {
+
+  .col-md-4 ul li {
+    margin: 20px!important;
+  }
+
+  span {
+    font-size: 0.8em;
+  }
+
+  #contact-h1 {
+    text-align: center;
+    padding-left: 0px;
+   }
+  
+
+  .instagram-media {
+    margin: 15px!important;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+  
+  h2 {
+    font-size: 1em;
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+  }
+
+  #tcl-bg {
+    height: 500px;
+  }
+
+  header {
+    padding: 0px;
+  }
+
+  #liz-photo {
+    border-radius: 50%;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-brand {
+    padding-left: 0px!important;
+    font-size: 1.1em;
+    margin-right: 0px;
+  }
+
+  .navbar-brand img {
+    width: 60px;
+    height: 60px;
+  }
+
+  main {
+    font-size: 1em;
+  }
+
+  .services {
+    margin-top: 120px;
+  }
+
+  .about {
+    margin-top: 20px;
+    position:unset;
+    width: 100%;
+    height: auto;
+    font-size: 0.8em;
+  }
+
+  .navbar-toggler {
+    padding: 1px;
+  }
+  
+}
