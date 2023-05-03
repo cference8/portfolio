@@ -1,199 +1,206 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- SEO tags -->
+		<meta name="description" content="Welcome to my Contact Page.">
+		<meta content="Christopher R. Ference — Software Developer" property="og:title">
+		<meta content="Welcome to my Portfolio. Web development is fun and satisfying but I love the problem solving of being a Software Engineer. 
+		Looking forward to the next challenge." property="og:description">
+		<!-- Favicon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<!-- style scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO tags -->
-    <meta name="description" content="Welcome to my Contact Page.">
-    <meta content="Christopher R. Ference — Software Developer" property="og:title">
-    <meta content="Welcome to my Portfolio. Web development is fun and satisfying but I love the problem solving of being a Software Engineer. 
-    Looking forward to the next challenge." property="og:description">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <!-- style scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<title>Portfolio :: Contact</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js" defer></script>
 
-    <title>Portfolio :: Contact</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-WDN90LN121"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDN90LN121"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+			gtag('config', 'G-WDN90LN121');
+		</script>
 
-        gtag('config', 'G-WDN90LN121');
-    </script>
+		<!--Formspree.io reCaptcha to prevent bot submissions-->
+		<script src="https://www.google.com/recaptcha/api.js?render=6LfOYbIhAAAAAL-wCmHyixBntT4arPashf38_0c7"></script>
+		<script>
+			grecaptcha.ready(function () {
+				grecaptcha.execute('6LfOYbIhAAAAAL-wCmHyixBntT4arPashf38_0c7', {action: 'submit'}).then(function (token) {
+					console.info("got token: " + token);
+					document.getElementById('g-recaptcha-response').value = token;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<header>
+			<div class="header">
+				Christopher R. Ference
+			</div>
+		</header>
+		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="/" class="logo-header" aria-label="home"><img id="logo" src="images/logo_edited.png" alt="logo"></a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav-menu">
+						<li class="nav-item">
+							<a href="/" class="nav-logo" aria-label="Portfolio">
+								<img id="logo" src="images/logo_edited.png" alt="Christopher R. Ference logo"/>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="/" class="nav-link" aria-label="Home">Home</a>
+						</li>
+						<li class="nav-item">
+							<p>
+								<a href="resume.html" class="nav-link" aria-label="Resume">Resume</a>
+							</p>     
+						</li>
+						<li class="nav-item">
+							<p>
+								<a href="contact.html" class="nav-link" aria-label="Contact">Contact</a>
+							</p>
+						</li>
+						<li class="nav-item">
+							<p>
+								<a href="javascript.html" class="nav-link" aria-label="JavaScript">JavaScript</a>
+							</p>
+						</li>
+						<li class="nav-item">
+							<p>
+								<a href="portfolio.html" class="nav-link" aria-label="Portfolio">Portfolio</a>
+							</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<main>
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-6 col-md-offset-3">
+				<!-- Sends to my employment email  -->
+				<div class="form-container">
+				  <h1>Contact Me</h1>
+				  <form action="https://formspree.io/f/mzbogvkn" method="POST" id="my-form" enctype="multipart/form-data">
+					<div class="form-group">
+					  <label for="first_name">*First Name</label>
+					  <input type="text" id="first_name" name="first_name" class="form-control" required>
+					</div>
 
-    <!--Formspree.io reCaptcha to prevent bot submissions-->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfOYbIhAAAAAL-wCmHyixBntT4arPashf38_0c7"></script>
-    <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('6LfOYbIhAAAAAL-wCmHyixBntT4arPashf38_0c7', {action: 'submit'}).then(function (token) {
-                console.info("got token: " + token);
-                document.getElementById('g-recaptcha-response').value = token;
-            });
-        });
-    </script>
-</head>
+					<div class="form-group">
+					  <label for="last_name">Last Name</label>
+					  <input type="text" id="last_name" name="last_name" class="form-control">
+					</div>
 
-<body>
-    <div class="header">
-        Christopher R. Ference
-    </div>
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="/" class="logo-header" aria-label="home"><img id="logo" src="images/logo_edited.png" alt="logo"></a>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="/" class="nav-logo"><img id="logo" src="images/logo_edited.png"
-                                alt="logo"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <p><a href="resume.html" class="nav-link" aria-label="Resume">Resume</a></p>
-                        
-                    </li>
-                    <li class="nav-item">
-                        <p><a href="contact.html" class="nav-link" aria-label="Contact">Contact</a></p>
-                    </li>
-                    <li class="nav-item">
-                        <p><a href="javascript.html" class="nav-link" aria-label="JavaScript">JavaScript</a></p>
-                    </li>
-                    <li class="nav-item">
-                        <p><a href="portfolio.html" class="nav-link" aria-label="Portfolio">Portfolio</a></p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main>
-        <div class="container">
-            <!-- this form will send to my student email -->
-            <div class="col-sm-12">
-                <div class="form-container">
-                    <h1>Contact Me</h1>
-                    <form action="https://formspree.io/f/mzbogvkn" method="POST" id="my-form"
-                        enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="first_name">*First Name</label>
-                            <input type="text" id="first_name" name="first_name" required/>
-                        </div>
+					<div class="form-group">
+					  <label for="email">*Email</label>
+					  <input type="email" id="email" name="email" class="form-control" required>
+					</div>
 
-                        <div class="form-group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" id="last_name" name="last_name" />
-                        </div>
+					<div class="form-group">
+					  <label for="phone">Phone</label>
+					  <input type="phone" id="phone" name="phone" class="form-control">
+					</div>
 
-                        <div class="form-group">
-                            <label for="email">*Email</label>
-                            <input type="email" id="email" name="email" required/>
-                        </div>
+					<div class="form-group">
+					  <label for="comments">Comments</label>
+					  <textarea name="comments" id="comments" cols="30" rows="3" class="form-control"></textarea>
+					</div>
 
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="phone" id="phone" name="phone" />
-                        </div>
+					<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+					<br>
+					<button id="form-button" type="submit" value="submit" class="btn btn-primary">Submit</button>
+				  </form>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</main>
+		<!-- bottom of the page content -->
+		<div class="clear"></div>
+		<!--this is needed to show the main content at the bottom of the page that would be hidden without it-->
+		<footer>
+			<p>
+				<a href="mailto:christopherference8@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+				<a href="https://github.com/cference8" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github-square"></i></a>
+				<a href="https://www.linkedin.com/in/cference8/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+			</p>
+			<a href="/" style="text-decoration: none;">
+				<small>&copy; Christopher R. Ference. All rights reserved.</small>
+			</a>
+		</footer>
 
-                        <div class="form-group">
-                            <label for="comments">Comments</label>
-                            <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
-                        </div>
-                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
-                        <br>
-                        <button id="form-button" type="submit" value="submit">Submit</button>
-                    </form>
-                </div>
-                <br>
-                <div id="status"></div>
-            </div>
-        </div>
+		<script>
+			// Form script
+			window.addEventListener('DOMContentLoaded', function () {
+				// get the form elements defined in your form HTML above
 
-    </main>
-    <!-- bottom of the page content -->
-    <div class="clear"></div>
-    <!--this is needed to show the main content at the bottom of the page that would be hidden without it-->
-    <footer>
-        <p>
-            <a href="mailto:christopherference8@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://github.com/cference8" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github-square"></i></a>
-            <a href="https://www.linkedin.com/in/cference8/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        </p>
-        <a href="/" style="text-decoration: none;"><small>&copy; Christopher R. Ference. All rights
-                reserved.</small></a>
-    </footer>
+				var form = document.getElementById('my-form');
+				// var button = document.getElementById("my-form-button");
+				var status = document.getElementById('status');
 
-    <script>
-        // Form script
-        window.addEventListener('DOMContentLoaded', function () {
-            // get the form elements defined in your form HTML above
+				// Success and Error functions for after the form is submitted
 
-            var form = document.getElementById('my-form');
-            // var button = document.getElementById("my-form-button");
-            var status = document.getElementById('status');
+				function success() {
+					form.reset();
+					status.classList.add('success');
+					status.innerHTML = "Thanks for your submission!";
+				}
 
-            // Success and Error functions for after the form is submitted
+				function error() {
+					status.classList.add('error');
+					status.innerHTML = "Oops! There was a problem submitting your form";
+					alert("Try again");
+				}
 
-            function success() {
-                form.reset();
-                status.classList.add('success');
-                status.innerHTML = "Thanks for your submission!";
-            }
+				// handle the form submission event
 
-            function error() {
-                status.classList.add('error');
-                status.innerHTML = "Oops! There was a problem submitting your form";
-                alert("Try again");
-            }
+				form.addEventListener('submit', function (ev) {
+					ev.preventDefault();
+					var data = new FormData(form);
+					ajax(form.method, form.action, data, success, error);
+				});
+			});
 
-            // handle the form submission event
+			// helper function for sending an AJAX request
 
-            form.addEventListener('submit', function (ev) {
-                ev.preventDefault();
-                var data = new FormData(form);
-                ajax(form.method, form.action, data, success, error);
-            });
-        });
-
-        // helper function for sending an AJAX request
-
-        function ajax(method, url, data, success, error) {
-            var xhr = new XMLHttpRequest();
-            xhr.open(method, url);
-            xhr.setRequestHeader('Accept', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState !== XMLHttpRequest.DONE) return;
-                if (xhr.status === 200) {
-                    success(xhr.response, xhr.responseType);
-                } else {
-                    error(xhr.status, xhr.response, xhr.responseType);
-                }
-            };
-            xhr.send(data);
-        }
-		
-    </script>
-</body>
-
+			function ajax(method, url, data, success, error) {
+				var xhr = new XMLHttpRequest();
+				xhr.open(method, url);
+				xhr.setRequestHeader('Accept', 'application/json');
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState !== XMLHttpRequest.DONE) return;
+					if (xhr.status === 200) {
+						success(xhr.response, xhr.responseType);
+					} else {
+						error(xhr.status, xhr.response, xhr.responseType);
+					}
+				};
+				xhr.send(data);
+			}
+			
+		</script>
+	</body>
 </html>
