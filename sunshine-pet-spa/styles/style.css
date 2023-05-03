@@ -51,6 +51,10 @@ body {
   main {
     margin: 0 auto;
   }
+  
+  .lead {
+	text-shadow: 1px 1px 2px #000;
+  }
 
   .btn-primary {
     background-color: #007bff;
