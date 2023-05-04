@@ -1,53 +1,37 @@
 // FORMSPREE.IO -- start
-$("#my-form").on("submit", function () {
-  // Form script
-  window.addEventListener("DOMContentLoaded", function () {
-    // get the form elements defined in your form HTML above
-
-    var form = document.getElementById("my-form");
-    // var button = document.getElementById("my-form-button");
-    var status = document.getElementById("status");
-
-    // Success and Error functions for after the form is submitted
-
-    function success() {
-      form.reset();
+var form = document.getElementById("my-form");
+    
+async function handleSubmit(event) {
+  event.preventDefault();
+  var status = document.getElementById("status");
+  var data = new FormData(event.target);
+  fetch(event.target.action, {
+    method: form.method,
+    body: data,
+    headers: {
+        'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
       status.classList.add("success");
       status.innerHTML = "Thanks for your submission!";
-    }
-
-    function error() {
-      status.classList.add("error");
-      status.innerHTML = "Oops! There was a problem submitting your form";
-      alert("Try again");
-    }
-
-    // handle the form submission event
-
-    form.addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      var data = new FormData(form);
-      ajax(form.method, form.action, data, success, error);
-    });
-
-    // helper function for sending an AJAX request
-
-    function ajax(method, url, data, success, error) {
-      var xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-      xhr.setRequestHeader("Accept", "application/json");
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState !== XMLHttpRequest.DONE) return;
-        if (xhr.status === 200) {
-          success(xhr.response, xhr.responseType);
+      form.reset()
+    } else {
+      response.json().then(data => {
+        if (Object.hasOwn(data, 'errors')) {
+          status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
         } else {
-          error(xhr.status, xhr.response, xhr.responseType);
+          status.classList.add("error");
+          status.innerHTML = "Oops! There was a problem submitting your form"
         }
-      };
-      xhr.send(data);
+      })
     }
+  }).catch(error => {
+    status.classList.add("error");
+    status.innerHTML = "Oops! There was a problem submitting your form"
   });
-});
+}
+form.addEventListener("submit", handleSubmit)
 // FORMSPREE.IO -- end
 
 // FLAPPY BIRD GAME -- start
