@@ -145,35 +145,54 @@ async function handleSubmit(event) {
   event.preventDefault();
   var status = document.getElementById("status");
   var data = new FormData(event.target);
+
+  // Check if required fields are empty
+  var requiredFields = ['first_name', 'email'];
+  var isMissingRequiredFields = requiredFields.some(function(fieldName) {
+    return !data.get(fieldName);
+  });
+
+  if (isMissingRequiredFields) {
+    if(status.classList.contains("success")){
+      status.classList.remove("success");
+    }
+    status.classList.add("error");
+    status.innerHTML = "Error: Missing input values";
+    return;
+  }
+
   fetch(event.target.action, {
     method: form.method,
     body: data,
     headers: {
-        'Accept': 'application/json'
+      'Accept': 'application/json'
     }
   }).then(response => {
-    console.log(response);
-    console.log(data);
     if (response.ok) {
       status.classList.add("success");
       status.innerHTML = "Thanks for your submission!";
-      form.reset()
+      form.reset();
     } else {
       response.json().then(data => {
         if (data && data.errors && data.errors.length > 0) {
-          status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+          status.innerHTML = data.errors.map(error => error.message).join(", ");
         } else {
-          status.classList.remove("success");
+          if(status.classList.contains("success")){
+            status.classList.remove("success");
+          }
           status.classList.add("error");
-          status.innerHTML = "Oops! There was a problem submitting your form"
+          status.innerHTML = "Oops! There was a problem submitting your form.";
         }
-      })
+      });
     }
   }).catch(error => {
-    status.classList.remove("success");
+    if(status.classList.contains("success")){
+      status.classList.remove("success");
+    }
     status.classList.add("error");
-    status.innerHTML = "Oops! There was a problem submitting your form"
+    status.innerHTML = "Oops! There was a problem submitting your form.";
   });
 }
+
 form.addEventListener("submit", handleSubmit)
 // FORMSPREE.IO -- end
