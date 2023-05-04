@@ -140,7 +140,7 @@ function printDiv(divName) {
 
 // FORMSPREE.IO -- start
 var form = document.getElementById("my-form");
-    
+
 async function handleSubmit(event) {
   event.preventDefault();
   var status = document.getElementById("status");
@@ -148,18 +148,32 @@ async function handleSubmit(event) {
 
   // Check if required fields are empty
   var requiredFields = ['first_name', 'email'];
-  var isMissingRequiredFields = requiredFields.some(function(fieldName) {
-    return !data.get(fieldName);
+  var missingFields = [];
+  requiredFields.forEach(function(fieldName) {
+    var fieldValue = data.get(fieldName);
+    if (!fieldValue) {
+      missingFields.push(fieldName);
+    }
   });
 
-  if (isMissingRequiredFields) {
-    if(status.classList.contains("success")){
-      status.classList.remove("success");
-    }
-    status.classList.add("error");
-    status.innerHTML = "Please fill out atleast First Name and Email";
+  if (missingFields.length > 0) {
+    // Display error message for each missing field
+    missingFields.forEach(function(fieldName) {
+      var field = document.getElementById(fieldName);
+      var parentContainer = field.parentElement;
+      var errorMessage = document.createElement('div');
+      errorMessage.classList.add('error-message');
+      errorMessage.innerHTML = 'This field is required.';
+      parentContainer.appendChild(errorMessage);
+    });
     return;
   }
+
+  // Remove any existing error messages
+  var errorMessages = document.querySelectorAll('.error-message');
+  errorMessages.forEach(function(errorMessage) {
+    errorMessage.remove();
+  });
 
   fetch(event.target.action, {
     method: form.method,
@@ -177,18 +191,14 @@ async function handleSubmit(event) {
         if (data && data.errors && data.errors.length > 0) {
           status.innerHTML = data.errors.map(error => error.message).join(", ");
         } else {
-          if(status.classList.contains("success")){
-            status.classList.remove("success");
-          }
+          status.classList.remove("success");
           status.classList.add("error");
           status.innerHTML = "Oops! There was a problem submitting your form.";
         }
       });
     }
   }).catch(error => {
-    if(status.classList.contains("success")){
-      status.classList.remove("success");
-    }
+    status.classList.remove("success");
     status.classList.add("error");
     status.innerHTML = "Oops! There was a problem submitting your form.";
   });
