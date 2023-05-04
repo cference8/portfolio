@@ -152,13 +152,15 @@ async function handleSubmit(event) {
         'Accept': 'application/json'
     }
   }).then(response => {
+    console.log(response);
+    console.log(data);
     if (response.ok) {
       status.classList.add("success");
       status.innerHTML = "Thanks for your submission!";
       form.reset()
     } else {
       response.json().then(data => {
-        if (Object.hasOwn(data, 'errors')) {
+        if (data && data.errors && data.errors.length > 0) {
           status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
         } else {
           status.classList.remove("success");
