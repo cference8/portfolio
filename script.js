@@ -157,7 +157,7 @@ async function handleSubmit(event) {
       status.classList.remove("success");
     }
     status.classList.add("error");
-    status.innerHTML = "Error: Missing input values";
+    status.innerHTML = "Please fill out atleast First Name and Email";
     return;
   }
 

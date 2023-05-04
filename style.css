@@ -373,6 +373,12 @@ textarea {
     animation: status 4s ease forwards
 }
 
+.error-message {
+    background-color: #fa815c;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+}
+
 @keyframes status {
     0% {
         opacity: 1;
