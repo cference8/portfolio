@@ -29,13 +29,10 @@ $("#my-form").on("submit", function() {
 			ajax(form.method, form.action, data, success, error);
 		});
 	});
-});
 
+  // helper function for sending an AJAX request
 
-
-// helper function for sending an AJAX request
-
-function ajax(method, url, data, success, error) {
+  function ajax(method, url, data, success, error) {
     var xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.setRequestHeader('Accept', 'application/json');
@@ -48,7 +45,8 @@ function ajax(method, url, data, success, error) {
         }
     };
     xhr.send(data);
-}
+  }
+});
 
 
 function printDiv(divName) {
