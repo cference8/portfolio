@@ -161,10 +161,13 @@ async function handleSubmit(event) {
     missingFields.forEach(function(fieldName) {
       var field = document.getElementById(fieldName);
       var parentContainer = field.parentElement;
-      var errorMessage = document.createElement('div');
-      errorMessage.classList.add('error-message');
-      errorMessage.innerHTML = 'This field is required.';
-      parentContainer.appendChild(errorMessage);
+      var errorMessage = parentContainer.querySelector('.error-message');
+      if (!errorMessage) {
+        errorMessage = document.createElement('div');
+        errorMessage.classList.add('error-message');
+        errorMessage.innerHTML = 'This field is required.';
+        parentContainer.appendChild(errorMessage);
+      }
     });
     return;
   }
