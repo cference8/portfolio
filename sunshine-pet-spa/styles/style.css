@@ -246,11 +246,7 @@ body {
     position:unset;
     width: 100%;
     height: auto;
-    font-size: 1.1em;
-  }
-  
-  .about p {
-	  
+    font-size: 1em;
   }
 
   .navbar-toggler {
