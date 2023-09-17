@@ -42,7 +42,7 @@
           <!-- The slideshow -->
           <div class="carousel-inner">
             <!-- Image 1 -->
-            <div class="carousel-item">
+            <div class="carousel-item active">
               <img src="img/front.jpg" alt="Front" class="image-fluid" />
             </div>
             <!-- Image 2 -->
@@ -195,7 +195,7 @@
             </div>
 
             <!-- Image 21 -->
-            <div class="carousel-item active">
+            <div class="carousel-item">
               <img
                 src="img/back_lawn.jpg"
                 alt="Back Lawn"
@@ -373,48 +373,52 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Function to toggle full-screen mode
-        function toggleFullScreen() {
-            var elem = document.documentElement;
-    
-            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.msRequestFullscreen) {
-                    elem.msRequestFullscreen();
-                } else if (elem.mozRequestFullScreen) {
-                    elem.mozRequestFullScreen();
-                } else if (elem.webkitRequestFullscreen) {
-                    elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                }
-            }
+      // Function to toggle full-screen mode
+      function toggleFullScreen() {
+        var elem = document.documentElement;
+
+        if (
+          !document.fullscreenElement &&
+          !document.mozFullScreenElement &&
+          !document.webkitFullscreenElement &&
+          !document.msFullscreenElement
+        ) {
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+          } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+          } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
         }
-    
-        // Add double-tap event listener to the carousel
-        var carousel = document.getElementById("myCarousel");
-        var doubleTap = false;
-    
-        carousel.addEventListener("touchstart", function (e) {
-            if (!doubleTap) {
-                doubleTap = true;
-                setTimeout(function () {
-                    doubleTap = false;
-                }, 300); // Adjust the time window for double-tap detection if needed
-            } else {
-                toggleFullScreen();
-            }
-        });
+      }
+
+      // Add double-tap event listener to the carousel
+      var carousel = document.getElementById("myCarousel");
+      var doubleTap = false;
+
+      carousel.addEventListener("touchstart", function (e) {
+        if (!doubleTap) {
+          doubleTap = true;
+          setTimeout(function () {
+            doubleTap = false;
+          }, 300); // Adjust the time window for double-tap detection if needed
+        } else {
+          toggleFullScreen();
+        }
+      });
     </script>
-    
   </body>
 </html>
