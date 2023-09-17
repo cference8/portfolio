@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>Image Carousel</title>
+    <style>
+      /* Center images inside carousel items */
+      .carousel-item img {
+        display: block;
+        margin: 0 auto;
+      }
+      /* Default image size for larger screens */
+      .carousel-item img {
+        width: 100%; /* Adjust this as needed */
+        max-width: none; /* Reset max-width to ensure image can expand */
+      }
+
+      /* Smaller image size for screens with a maximum width of 576px (typical for mobile) */
+      @media (max-width: 576px) {
+        .carousel-item img {
+          width: 90%; /* Adjust this as needed for smaller screens */
+        }
+      }
+
+      /* Styling for the background */
+      body {
+        background-color: #0f4a6b; /* Replace with your preferred background color */
+        color: #ffffff; /* Text color on the background */
+      }
+
+      /* Styling for the custom h1 tag */
+      h1 {
+        font-family: "Arial", sans-serif; /* Use your preferred font-family */
+        font-size: 36px; /* Adjust the font size as needed */
+        text-align: center;
+        margin-top: 20px; /* Add spacing from the top */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-fluid mt-5">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <!-- Image 1 -->
+                    <div class="carousel-item">
+                        <img src="img/front.jpg" alt="Front" class="image-fluid" />
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="carousel-item">
+                        <img src="img/front_2.jpg" alt="Front 2" class="image-fluid" />
+                    </div>
+                    <!-- Image 3 -->
+                    <div class="carousel-item">
+                        <img src="img/entryway.jpg" alt="Entryway" class="image-fluid" />
+                    </div>
+                    <!-- Image 4 -->
+                    <div class="carousel-item">
+                        <img src="img/entryway_2.jpg" alt="Entryway 2" class="image-fluid" />
+                    </div>
+                    <!-- Image 5 -->
+                    <div class="carousel-item">
+                        <img src="img/entryway_3.jpg" alt="Entryway 3" class="image-fluid" />
+                    </div>
+                    <!-- Image 6 -->
+                    <div class="carousel-item">
+                        <img src="img/entryway_lounge.jpg" alt="Entryway Lounge" class="image-fluid" />
+                    </div>
+                    <!-- Image 7 -->
+                    <div class="carousel-item">
+                        <img src="img/ellen_office.jpg" alt="Ellen Office" class="image-fluid" />
+                    </div>
+                    <!-- Image 8 -->
+                    <div class="carousel-item">
+                        <img src="img/living_room.jpg" alt="Living Room" class="image-fluid" />
+                    </div>
+                    <!-- Image 9 -->
+                    <div class="carousel-item">
+                        <img src="img/living_room_2.jpg" alt="Living Room 2" class="image-fluid" />
+                    </div>
+                    <!-- Image 10 -->
+                    <div class="carousel-item">
+                        <img src="img/living_room_3.jpg" alt="Living Room 3" class="image-fluid" />
+                    </div>
+                    <!-- Image 11 -->
+                    <div class="carousel-item">
+                        <img src="img/living_room_4.jpg" alt="Living Room 4" class="image-fluid" />
+                    </div>
+                    <!-- Image 12 -->
+                    <div class="carousel-item">
+                        <img src="img/kitchen.jpg" alt="Kitchen" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 13 -->
+                    <div class="carousel-item">
+                        <img src="img/kitchen_2.jpg" alt="Kitchen 2" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 14 -->
+                    <div class="carousel-item">
+                        <img src="img/kitchen_3.jpg" alt="Kitchen 3" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 15 -->
+                    <div class="carousel-item">
+                        <img src="img/dinning_area.jpg" alt="Dinning Area" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 16 -->
+                    <div class="carousel-item">
+                        <img src="img/dinning_area_2.jpg" alt="Dinning Area 2" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 17 -->
+                    <div class="carousel-item">
+                        <img src="img/dinning_area_3.jpg" alt="Dinning Area 3" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 18 -->
+                    <div class="carousel-item">
+                        <img src="img/laundry_room.jpg" alt="Laundry Room" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 19 -->
+                    <div class="carousel-item">
+                        <img src="img/laundry_room_2.jpg" alt="Laundry Room 2" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 20 -->
+                    <div class="carousel-item">
+                        <img src="img/back_patio.jpg" alt="Back Patio" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 21 -->
+                    <div class="carousel-item active">
+                        <img src="img/back_lawn.jpg" alt="Back Lawn" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 22 -->
+                    <div class="carousel-item">
+                        <img src="img/pool.jpg" alt="Pool" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 23 -->
+                    <div class="carousel-item">
+                        <img src="img/pool_2.jpg" alt="Pool 2" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 24 -->
+                    <div class="carousel-item">
+                        <img src="img/pool_3.jpg" alt="Pool 3" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 25 -->
+                    <div class="carousel-item">
+                        <img src="img/pool_4.jpg" alt="Pool 4" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 26 -->
+                    <div class="carousel-item">
+                        <img src="img/pool_5.jpg" alt="Pool 5" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 27 -->
+                    <div class="carousel-item">
+                        <img src="img/pool_6.jpg" alt="Pool 6" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 28 -->
+                    <div class="carousel-item">
+                        <img src="img/tiki_hut.jpg" alt="Tiki Hut" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 29 -->
+                    <div class="carousel-item">
+                        <img src="img/master_bedroom.jpg" alt="Master Bedroom" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 30 -->
+                    <div class="carousel-item">
+                        <img src="img/master_balcony.jpg" alt="Master Balcony" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 31 -->
+                    <div class="carousel-item">
+                        <img src="img/master_powder_room.jpg" alt="Master Powder Room" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 32 -->
+                    <div class="carousel-item">
+                        <img src="img/master_powder_room_2.jpg" alt="Master Powder Room 2" class="image-fluid" />
+                    </div>
+ 
+                    <!-- Image 33 -->
+                    <div class="carousel-item">
+                        <img src="img/master_bathroom.jpg" alt="Master Bathroom" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 34 -->
+                    <div class="carousel-item">
+                        <img src="img/bedroom_2.jpg" alt="Bedroom 2" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 35 -->
+                    <div class="carousel-item">
+                        <img src="img/bedroom_3.jpg" alt="Bedroom 3" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 36 -->
+                    <div class="carousel-item">
+                        <img src="img/guest_bathroom.jpg" alt="Guest Bathroom" class="image-fluid" />
+                    </div>
+
+                    <!-- Image 37 -->
+                    <div class="carousel-item">
+                        <img src="img/basement.jpg" alt="Basement" class="image-fluid" />
+                    </div>
+                    <!-- Image 38 -->
+                    <div class="carousel-item">
+                        <img src="img/basement_storage.jpg" alt="Basement Storage" class="image-fluid" />
+                    </div>
+                    <!-- Image 39 -->
+                    <div class="carousel-item">
+                        <img src="img/basement_4.jpg" alt="Basement 4" class="image-fluid" />
+                    </div>
+                    <!-- Image 40 -->
+                    <div class="carousel-item">
+                        <img src="img/basement_2.jpg" alt="Basement 2" class="image-fluid" />
+                    </div>
+                    <!-- Image 41 -->
+                    <div class="carousel-item">
+                        <img src="img/basement_3.jpg" alt="Basement 3" class="image-fluid" />
+                    </div>
+                    <!-- Image 42 -->
+                    <div class="carousel-item">
+                        <img src="img/basement_bathroom.jpg" alt="Basement Bathroom" class="image-fluid" />
+                    </div>
+                </div>
+
+
+          <!-- Left and right controls -->
+          <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+        <!-- Custom h1 tag -->
+        <h1>Chris & Ellen's Forever Home</h1>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
