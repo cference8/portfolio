@@ -373,52 +373,64 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-      // Function to toggle full-screen mode
-      function toggleFullScreen() {
-        var elem = document.documentElement;
-
-        if (
-          !document.fullscreenElement &&
-          !document.mozFullScreenElement &&
-          !document.webkitFullscreenElement &&
-          !document.msFullscreenElement
-        ) {
-          if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-          } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-          } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-          } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-          }
-        } else {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-          }
+        // Function to toggle full-screen mode and handle screen orientation change
+        function toggleFullScreen() {
+            var elem = document.documentElement;
+    
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                    if (screen.orientation && screen.orientation.lock) {
+                        // Lock the screen orientation to landscape
+                        screen.orientation.lock("landscape");
+                    }
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                    if (screen.orientation && screen.orientation.lock) {
+                        // Lock the screen orientation to landscape
+                        screen.orientation.lock("landscape");
+                    }
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    if (screen.orientation && screen.orientation.unlock) {
+                        // Unlock the screen orientation
+                        screen.orientation.unlock();
+                    }
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                    if (screen.orientation && screen.orientation.unlock) {
+                        // Unlock the screen orientation
+                        screen.orientation.unlock();
+                    }
+                }
+            }
         }
-      }
-
-      // Add double-tap event listener to the carousel
-      var carousel = document.getElementById("myCarousel");
-      var doubleTap = false;
-
-      carousel.addEventListener("touchstart", function (e) {
-        if (!doubleTap) {
-          doubleTap = true;
-          setTimeout(function () {
-            doubleTap = false;
-          }, 300); // Adjust the time window for double-tap detection if needed
-        } else {
-          toggleFullScreen();
-        }
-      });
+    
+        // Add double-tap event listener to the carousel
+        var carousel = document.getElementById("myCarousel");
+        var doubleTap = false;
+    
+        carousel.addEventListener("touchstart", function (e) {
+            if (!doubleTap) {
+                doubleTap = true;
+                setTimeout(function () {
+                    doubleTap = false;
+                }, 300); // Adjust the time window for double-tap detection if needed
+            } else {
+                toggleFullScreen();
+            }
+        });
     </script>
+    
   </body>
 </html>
