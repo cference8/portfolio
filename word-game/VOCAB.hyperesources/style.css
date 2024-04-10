@@ -1,0 +1,36 @@
+.box {
+	text-transform: uppercase;
+}
+
+.box.empty {
+	background-color: #3A3A3C !important;
+	border-color: #3A3A3C !important;
+}
+
+.box.wrong {
+	background-color: #B59F3B !important;
+	border-color: #B59F3B !important;
+}
+
+.box.right {
+	background-color: #538D4E !important;
+	border-color: #538D4E !important;
+}
+
+.keyboard-button.empty {
+	background-color: #3A3A3C !important;
+	border-color: #3A3A3C !important;
+}
+
+.keyboard-button.wrong {
+	background-color: #B59F3B !important;
+	border-color: #B59F3B !important;
+}
+
+.keyboard-button.right {
+	background-color: #538D4E !important;
+	border-color: #538D4E !important;
+}
+
+
+
