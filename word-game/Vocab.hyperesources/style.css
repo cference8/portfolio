@@ -1,0 +1,149 @@
+
+/* Game color toggle styling */
+.box {
+	text-transform: uppercase;
+}
+
+.box.empty {
+	background-color: #3A3A3C !important;
+	border-color: #3A3A3C !important;
+}
+
+.box.wrong {
+	background-color: #B59F3B !important;
+	border-color: #B59F3B !important;
+}
+
+.box.right {
+	background-color: #538D4E !important;
+	border-color: #538D4E !important;
+}
+
+.keyboard-button.empty {
+	background-color: #3A3A3C !important;
+	border-color: #3A3A3C !important;
+}
+
+.keyboard-button.wrong {
+	background-color: #B59F3B !important;
+	border-color: #B59F3B !important;
+}
+
+.keyboard-button.right {
+	background-color: #538D4E !important;
+	border-color: #538D4E !important;
+}
+
+
+/* Additional game styling */
+
+html, body {
+	background-color: #121213;
+}
+
+#vocab_hype_container {
+	margin-top: 20px !important;
+}
+
+.game-icon {
+	margin: 5px;
+}
+
+/* Base styles */
+#keyboard-cont {
+    width: 320px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures rows are spaced evenly vertically */
+}
+
+.keyboard-button {
+    background-color: #808283; /* Light grey background */
+    border: 1px solid #808283; 
+    border-radius: 4px; /* Rounded corners */
+    padding: 0; /* Removes default padding */
+    margin: 3px; /* Ensures buttons don't touch */
+    flex-grow: 1; /* Allows buttons to expand to fill available space */
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: dimgrey;
+    color: white;
+}
+
+.keyboard-button:active {
+	background-color: dimgrey;
+}
+
+.keyboard-button:hover {
+	filter: brightness(120%);
+}
+
+.first-row .keyboard-button,
+.second-row .keyboard-button {
+    width: 40px; 
+    height: 40px; 
+}
+
+.third-row .keyboard-button {
+    width: 36px; 
+    height: 40px;
+}
+
+#enterKey, #delKey {
+	width: 44px;
+}
+
+.first-row, .second-row, .third-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#statistics {
+	overflow-y: auto !important;
+	width: 330px !important;
+	height: 540px !important;
+	overflow-x: hidden !important;
+}
+
+ol li::before {
+		color: hsla(0, 0%, 100%, .5);
+}
+
+#info-icon:hover {
+	color: grey;
+}
+
+
+#definitions { padding-bottom: 5px !important; }
+@media only screen and (min-width: 425px) {
+  #infoSubTitle { font-size: 1rem !important; }
+  #definitions { padding-bottom: 20px !important;  }
+  #keyboard { transform: translateX(-50px) translateY(461px) !important; }
+  #keyboard-cont { width: 405px !important; }
+  .HYPE_document { overflow: visible !important; }
+  .HYPE_scene { overflow: visible !important; }
+}
+
+@media only screen and (max-width: 425px) {
+  #infoSubTitle { font-size: 1rem !important; }
+  #definitions { padding-bottom: 20px !important;  }
+  #keyboard { transform: translateX(-50px) translateY(461px) !important; }
+  #keyboard-cont { width: 405px !important; }
+  .HYPE_document { overflow: visible !important; }
+  .HYPE_scene { overflow: visible !important; }
+}
+
+@media only screen and (max-width: 375px) {
+  #keyboard { transform: translateX(-26px) translateY(461px) !important; }
+  #keyboard-cont { width: 355px !important; }
+  .HYPE_document { overflow: visible !important; }
+  .HYPE_scene { overflow: visible !important; }
+}
+
+@media only screen and (max-width: 320px) {
+  #keyboard { transform: translateX(-9px) translateY(461px) !important; }
+  #keyboard-cont { width: 320px !important; }
+  .HYPE_document { overflow: visible !important; }
+  .HYPE_scene { overflow: visible !important; }
+}
