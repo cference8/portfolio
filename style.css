@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
+@import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap);
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    background-color: #faf9f6;
-    font-family: Montserrat, sans-serif;
+    overflow-x: hidden
 }
 
 p {
-    font-size: 20px;
+    font-size: 20px
 }
 
 #resume {
@@ -23,47 +22,66 @@ p {
     margin-top: 20px;
 }
 
+
 .header {
     text-align: center;
     color: #fff;
-    background-color: #082524;
+    background-color: #082524
+}
+
+ul li {
+    text-decoration: none
 }
 
 ul {
-    padding-left: 0;
-    list-style-type: none;
+    padding-left: 0
+}
+
+body {
+    background-color: #faf9f6;
+    font-family: Montserrat, sans-serif;
+    margin: 0
 }
 
 main {
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 20px auto
 }
 
-h1, h6 {
-    text-align: center;
+h1 {
+    text-align: center
 }
 
 h2 {
     font-family: 'Roboto Mono', monospace;
     margin-top: 0;
-    padding: 1rem;
+    padding: 1rem
 }
 
 h3 {
-    padding: 1rem;
+    padding: 1rem
 }
 
-#sunshine-pet-spa, .example {
+h6 {
+    text-align: center
+}
+
+#sunshine-pet-spa {
     box-shadow: 2px 2px 2px gray;
 }
 
-#sunshine-pet-spa:hover, .example:hover {
+#sunshine-pet-spa:hover {
     opacity: 0.8;
 }
 
 .example {
+    box-shadow: 2px 2px 2px gray;
     margin-top: 10px;
     margin-left: 7px;
+}
+
+.example:hover {
+    opacity: 0.8;
 }
 
 .big-3 {
@@ -107,7 +125,7 @@ hr {
     margin: 60px auto;
     border: 0;
     height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .75), rgba(0, 0, 0, 0));
 }
 
 .skills-columns {
@@ -118,12 +136,12 @@ hr {
     vertical-align: top;
 }
 
-nav, .navbar {
+nav {
     background-color: #5d9b9b;
     border-bottom: 2px solid #00008b;
 }
 
-.nav-logo, .logo-header {
+.nav-logo {
     text-decoration: none;
     font-size: 2.1rem;
     font-weight: 500;
@@ -145,12 +163,17 @@ nav, .navbar {
 }
 
 nav ul {
-    margin: 10px 0;
+    margin-bottom: 0;
+    margin-top: 10px;
     list-style-type: none;
 }
 
 nav a {
     text-decoration: none;
+}
+
+.navbar {
+    background-color: #5d9b9b;
 }
 
 .nav-item {
@@ -169,10 +192,11 @@ nav a {
 }
 
 .nav-link:hover {
+    text-decoration: none;
     color: #e5d5c0;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
 .clear {
@@ -190,6 +214,7 @@ footer {
     text-align: center;
     border-top: 1px solid gray;
     padding: 10px;
+    clear: left;
 }
 
 i {
@@ -204,7 +229,7 @@ i:hover {
 
 .about-logos:hover {
     border-radius: 90px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
 #aboutMePhoto img {
@@ -214,7 +239,7 @@ i:hover {
 
 canvas {
     border: 1px solid #d3d3d3;
-    background-image: url('images/4622688.jpg');
+    background-image: url(images/4622688.jpg);
     background-size: 100% 100%;
     margin: 0 auto;
     display: block;
@@ -229,6 +254,7 @@ canvas {
     text-decoration: none;
     color: #fff;
     background-color: #5d9b9b;
+    backface-visibility: hidden;
     border-radius: 3rem;
     border: 2px solid #00008b;
     text-shadow: 1px 1px 2px #000;
@@ -245,7 +271,8 @@ canvas {
 }
 
 .game-controls {
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
 }
 
@@ -254,7 +281,7 @@ table {
     margin: 25px 0;
     font-size: .9em;
     width: 100%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
     border-radius: 5px 5px 0 0;
     overflow: hidden;
 }
@@ -265,50 +292,52 @@ table thead tr {
     text-align: left;
 }
 
-table td, table th {
-    padding: 12px 15px;
+table td,
+table th {
+    padding: 12px 15px
 }
 
 table tbody tr {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd
 }
 
 table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: #f3f3f3
 }
 
 table tbody tr:last-of-type {
-    border-bottom: 2px solid #5d9b9b;
+    border-bottom: 2px solid #5d9b9b
 }
 
 table tbody tr.active-row {
     font-weight: 700;
-    color: #5d9b9b;
+    color: #5d9b9b
 }
 
 .form-container {
     margin: 0 auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
     max-width: 700px;
-    padding: 1rem;
+    padding: 1rem
 }
 
 .form-group {
     width: 100%;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 20px
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 5px;
     font-size: 18px;
-    border: 1px solid rgba(128, 128, 128, 0.199);
-    margin-top: 5px;
+    border: 1px solid rgba(128, 128, 128, 0, 199);
+    margin-top: 5px
 }
 
 textarea {
-    resize: vertical;
+    resize: vertical
 }
 
 #form-button {
@@ -324,7 +353,7 @@ textarea {
     cursor: pointer;
     background-color: #5d9b9b;
     margin-top: 10px;
-    transition: .3s ease background-color;
+    transition: .3s ease background-color
 }
 
 #status {
@@ -333,20 +362,20 @@ textarea {
     text-align: center;
     padding: 10px;
     margin: 0 auto;
-    border-radius: 8px;
+    border-radius: 8px
 }
 
 #status.success {
     background-color: #d3fa99;
     text-shadow: 1px 1px 2px #000;
-    animation: status 4s ease forwards;
+    animation: status 4s ease forwards
 }
 
 #status.error {
     background-color: #fa815c;
     color: #fff;
     text-shadow: 1px 1px 2px #000;
-    animation: status 4s ease forwards;
+    animation: status 4s ease forwards
 }
 
 .error-message {
@@ -357,20 +386,27 @@ textarea {
 }
 
 @keyframes status {
-    0%, 90% {
+    0% {
         opacity: 1;
-        pointer-events: all;
+        pointer-events: all
     }
+
+    90% {
+        opacity: 1;
+        pointer-events: all
+    }
+
     100% {
         opacity: 0;
-        pointer-events: none;
+        pointer-events: none
     }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width:1024px) {
     h1 {
-        font-size: 2em;
+        font-size: 2em
     }
+
     #aboutMePhoto {
         width: 200px;
         height: 200px;
@@ -379,69 +415,89 @@ textarea {
         padding: 0;
         text-align: center;
         margin: 0 auto;
-        box-shadow: 2px 2px 6px #000;
+        box-shadow: 2px 2px 6px #000
     }
+
     #aboutMePhoto img {
         width: 100%;
-        height: auto;
+        height: auto
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width:768px) {
     #iframe {
-        display: block;
+        display: block
     }
+
     p {
-        font-size: 1.5rem;
+        font-size: 1.5rem
     }
+
     h2 {
         font-weight: 700;
-        font-size: 2rem;
+        font-size: 2rem
     }
+
     h3 {
         font-weight: 700;
-        font-size: 1.7rem;
+        font-size: 1.7rem
     }
+
     label {
-        font-size: 1.5rem;
+        font-size: 1.5rem
     }
+
     .nav-menu {
         text-align: center;
         display: block;
-        justify-content: unset;
+        justify-content: unset
     }
+
     .nav-link {
-        display: block;
+        display: block
     }
+
     .navbar-header {
-        margin-top: 10px;
+        margin-top: 10px
     }
+
     nav ul {
-        margin-top: 0;
+        margin-top: 0
     }
+
     .logo-header {
+        text-decoration: none;
         font-size: 1.5rem;
-        display: contents;
+        font-weight: 500;
+        color: #2c3e50;
+        display: contents
     }
+
     .nav-logo {
-        display: none;
+        display: none
     }
+
     .nav-link {
-        font-size: 2rem;
+        font-size: 2rem
     }
+
     h1 {
-        font-size: 3em;
+        font-size: 3em
     }
+
     table {
-        font-size: 10px;
+        font-size: 10px
     }
+
     canvas {
         width: 100%;
-        height: auto;
+        height: auto
     }
+
     .myButton {
-        padding: .2rem .5rem;
+        padding: .2rem .5rem
     }
+
     #aboutMePhoto {
         position: relative;
         z-index: -1;
@@ -451,11 +507,13 @@ textarea {
         overflow: hidden;
         padding: 0;
         text-align: center;
+        float: none;
         margin: 0 auto;
-        box-shadow: 2px 2px 6px #000;
+        box-shadow: 2px 2px 6px #000
     }
+
     #aboutMePhoto img {
         width: 100%;
-        height: auto;
+        height: auto
     }
 }
