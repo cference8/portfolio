@@ -21,6 +21,7 @@ h1 {
     text-align: center;
     opacity: 0.4;
     text-shadow: 1px 1px 2px #000;
+    margin: 10px;
 }
 
 .date-display {
