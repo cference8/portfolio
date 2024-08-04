@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ToDo App</title>
+        <link rel="stylesheet" href="style.css" />
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+            import { getDatabase, ref, onValue, push, set, update, remove } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyD7bwY26c19iMTxbZncjQ2iFkKqtcveL3E",
+              authDomain: "todo-8c5d9.firebaseapp.com",
+              projectId: "todo-8c5d9",
+              storageBucket: "todo-8c5d9.appspot.com",
+              messagingSenderId: "398660721038",
+              appId: "1:398660721038:web:31f0c39e339951926aecdf"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+          
+            const form = document.getElementById("form");
+            const input = document.getElementById("input");
+            const todosUL = document.getElementById("todos");
+
+            // Function to read todos from Firebase
+            function loadTodos() {
+              const todosRef = ref(db, 'todos');
+              onValue(todosRef, (snapshot) => {
+                const todos = snapshot.val();
+                todosUL.innerHTML = '';
+                if (todos) {
+                  Object.keys(todos).forEach(key => {
+                    addTodo({
+                      text: todos[key].text,
+                      completed: todos[key].completed,
+                      id: key
+                    });
+                  });
+                }
+              });
+            }
+
+            // Load todos on startup
+            loadTodos();
+
+            form.addEventListener("submit", (e) => {
+              e.preventDefault();
+              addTodo();
+            });
+
+            function addTodo(todo = { text: input.value, completed: false }) {
+              if (todo.text) {
+                const todoEl = document.createElement("li");
+                todoEl.innerText = todo.text;
+                if (todo.completed) {
+                  todoEl.classList.add("completed");
+                }
+
+                todoEl.addEventListener("click", () => {
+                  todoEl.classList.toggle("completed");
+                  updateTodo(todo.id, todoEl.innerText, todoEl.classList.contains("completed"));
+                });
+
+                todoEl.addEventListener("contextmenu", (e) => {
+                  e.preventDefault();
+                  todoEl.remove();
+                  deleteTodo(todo.id);
+                });
+
+                todosUL.appendChild(todoEl);
+
+                if (!todo.id) {
+                  const newTodoRef = push(ref(db, 'todos'));
+                  todo.id = newTodoRef.key;
+                  set(newTodoRef, todo);
+                } else {
+                  updateTodo(todo.id, todo.text, todo.completed);
+                }
+
+                input.value = '';
+              }
+            }
+
+            function updateTodo(id, text, completed) {
+              const todoRef = ref(db, `todos/${id}`);
+              update(todoRef, { text, completed });
+            }
+
+            function deleteTodo(id) {
+              const todoRef = ref(db, `todos/${id}`);
+              remove(todoRef);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>ToDo</h1>
+        <form id="form">
+            <input
+                type="text"
+                id="input"
+                class="input"
+                placeholder="Enter your ToDo"
+                autocomplete="off"
+            />
+            <ul class="todos" id="todos"></ul>
+        </form>
+        <small
+            >Left click to toggle complete. <br />
+            Right click to delete the ToDo. <br />
+            Press and Hold to delete on mobile.
+        </small
+        >
+    </body>
+</html>
