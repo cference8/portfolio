@@ -25,7 +25,7 @@ h1 {
 
 form {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
+    max-width: 95%;
     width: 400px;
 }
 
@@ -74,6 +74,7 @@ form {
 small {
     color: #b5b5b5;
     margin-top: 3rem;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
@@ -85,6 +86,7 @@ small {
 
 @media only screen and (max-width: 376px) {
     form {
+        max-width: 95%;
         width: 300px
     }
 }
