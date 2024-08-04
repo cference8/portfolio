@@ -73,8 +73,10 @@ function addTodo(todo = { text: input.value, completed: false }) {
 
     todoEl.addEventListener("contextmenu", (e) => {
       e.preventDefault();
-      todoEl.remove();
-      deleteTodo(todo.id);
+      if (confirm("Are you sure you want to delete this item?")) {
+        todoEl.remove();
+        deleteTodo(todo.id);
+      }
     });
 
     todosUL.appendChild(todoEl);
