@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ToDo App</title>
-        <link rel="stylesheet" href="style.css" />
-        <script  type="module" src="script.js"></script>
-    </head>
-    <body>
-        <h1>ToDo</h1>
-        <form id="form">
-            <input
-                type="text"
-                id="input"
-                class="input"
-                placeholder="Enter your ToDo"
-                autocomplete="off"/>
-            <ul class="todos" id="todos"></ul>
-        </form>
-        <small
-            >Left click to toggle complete. <br />
-            Right click to delete the ToDo. <br />
-            Press and Hold to delete on mobile.
-        </small>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" type="module" defer></script>
+</head>
+<body>
+    <h1>ToDo</h1>
+    <div class="date-display" id="date-display"></div>
+    <form id="form">
+        <input
+            type="text"
+            id="input"
+            class="input"
+            placeholder="Enter your ToDo"
+            autocomplete="off"
+        />
+        <ul class="todos" id="todos"></ul>
+    </form>
+    <small
+        >Left click to toggle complete. <br />
+        Right click to delete the ToDo. <br />
+        Press and Hold to delete on mobile.
+    </small>
+</body>
 </html>

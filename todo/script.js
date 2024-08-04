@@ -18,6 +18,22 @@ const db = getDatabase(app);
 const form = document.getElementById("form");
 const input = document.getElementById("input");
 const todosUL = document.getElementById("todos");
+const dateDisplay = document.getElementById("date-display");
+
+// Function to get today's date in MM-DD-YYYY format
+function getTodayDate() {
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+  const yyyy = today.getFullYear();
+  return `${mm}-${dd}-${yyyy}`;
+}
+
+// Display today's date
+function displayDate() {
+  const todayDate = getTodayDate();
+  dateDisplay.innerHTML = `Today's date: ${todayDate} <br> (List is deleted daily)`;
+}
 
 // Function to read todos from Firebase
 function loadTodos() {
@@ -26,13 +42,19 @@ function loadTodos() {
     const todos = snapshot.val();
     todosUL.innerHTML = '';
     if (todos) {
-      Object.keys(todos).forEach(key => {
-        addTodo({
-          text: todos[key].text,
-          completed: todos[key].completed,
-          id: key
+      const todoArray = Object.keys(todos).map(key => ({
+        ...todos[key],
+        id: key
+      }));
+
+      // Check if the first todo's date is not today, then delete all todos
+      if (todoArray.length > 0 && todoArray[0].date !== getTodayDate()) {
+        deleteAllTodos();
+      } else {
+        todoArray.forEach(todo => {
+          addTodo(todo);
         });
-      });
+      }
     }
   });
 }
@@ -45,30 +67,32 @@ form.addEventListener("submit", (e) => {
   addTodo();
 });
 
-function addTodo(todo = { text: input.value, completed: false }) {
+function addTodo(todo = { text: input.value, completed: false, date: getTodayDate() }) {
   if (todo.text) {
     const todoEl = document.createElement("li");
     todoEl.classList.add("todo-item");
+
+    const textNode = document.createElement("span");
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = todo.completed;
 
-    const textNode = document.createElement("span");
-    textNode.innerText = todo.text;
+    const text = document.createTextNode(todo.text);
+    textNode.appendChild(checkbox);
+    textNode.appendChild(text);
 
     if (todo.completed) {
       todoEl.classList.add("completed");
     }
 
-    todoEl.appendChild(checkbox);
     todoEl.appendChild(textNode);
 
     todoEl.addEventListener("click", () => {
       const isCompleted = !todoEl.classList.contains("completed");
       todoEl.classList.toggle("completed", isCompleted);
       checkbox.checked = isCompleted;
-      updateTodo(todo.id, textNode.innerText, isCompleted);
+      updateTodo(todo.id, textNode.innerText, isCompleted, todo.date);
     });
 
     todoEl.addEventListener("contextmenu", (e) => {
@@ -86,19 +110,27 @@ function addTodo(todo = { text: input.value, completed: false }) {
       todo.id = newTodoRef.key;
       set(newTodoRef, todo);
     } else {
-      updateTodo(todo.id, todo.text, todo.completed);
+      updateTodo(todo.id, todo.text, todo.completed, todo.date);
     }
 
     input.value = '';
   }
 }
 
-function updateTodo(id, text, completed) {
+function updateTodo(id, text, completed, date) {
   const todoRef = ref(db, `todos/${id}`);
-  update(todoRef, { text, completed });
+  update(todoRef, { text, completed, date });
 }
 
 function deleteTodo(id) {
   const todoRef = ref(db, `todos/${id}`);
   remove(todoRef);
 }
+
+function deleteAllTodos() {
+  const todosRef = ref(db, 'todos');
+  remove(todosRef);
+}
+
+// Display the date on page load
+displayDate();
