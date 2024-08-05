@@ -121,6 +121,12 @@ form {
     margin-top: 0.5rem;
 }
 
+.todos .completed-time {
+    font-size: 0.8rem;
+    color: grey;
+    margin-top: 0.5rem;
+}
+
 #save-name {
     margin-left: 5px;
 }
@@ -131,6 +137,7 @@ small {
     margin-bottom: 1rem;
     text-align: center;
 }
+  
 
 @media only screen and (max-width: 768px) {
     h1 {

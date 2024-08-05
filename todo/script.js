@@ -80,7 +80,7 @@ function loadTodos() {
         deleteAllTodos();
       } else {
         todoArray.forEach(todo => {
-          addTodo(todo);
+          addTodoElement(todo);
         });
       }
     }
@@ -103,64 +103,71 @@ nameInput.addEventListener('keydown', (e) => {
   }
 });
 
-function addTodo(todo = { text: input.value, completed: false, date: getTodayDate(), name: localStorage.getItem('name'), time: getCurrentTime() }) {
-  if (todo.text) {
-    const todoEl = document.createElement("li");
-    todoEl.classList.add("todo-item");
+async function addTodo() {
+  const text = input.value;
+  const completed = false;
+  const date = getTodayDate();
+  const name = localStorage.getItem('name');
+  const time = getCurrentTime();
 
-    const textNode = document.createElement("span");
-
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = todo.completed;
-
-    const text = document.createTextNode(todo.text);
-    textNode.appendChild(checkbox);
-    textNode.appendChild(text);
-
-    const nameNode = document.createElement("span");
-    nameNode.classList.add("todo-name");
-    nameNode.innerText = `${todo.name} - ${todo.time}`;
-
-    if (todo.completed) {
-      todoEl.classList.add("completed");
-    }
-
-    todoEl.appendChild(textNode);
-    todoEl.appendChild(nameNode);
-
-    todoEl.addEventListener("click", () => {
-      const isCompleted = !todoEl.classList.contains("completed");
-      todoEl.classList.toggle("completed", isCompleted);
-      checkbox.checked = isCompleted;
-      updateTodo(todo.id, textNode.innerText, isCompleted, todo.date, todo.name, todo.time);
-    });
-
-    todoEl.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-      if (confirm("Are you sure you want to delete this item?")) {
-        todoEl.remove();
-        deleteTodo(todo.id);
-      }
-    });
-
-    todosUL.appendChild(todoEl);
-
-    if (!todo.id) {
-      const newTodoRef = push(ref(db, 'todos'));
-      todo.id = newTodoRef.key;
-      set(newTodoRef, todo);
-    } else {
-      updateTodo(todo.id, todo.text, todo.completed, todo.date, todo.name, todo.time);
-    }
+  if (text) {
+    const newTodoRef = push(ref(db, 'todos'));
+    const todo = { text, completed, date, name, time, completedTime: null };
+    await set(newTodoRef, todo);
 
     input.value = '';
+    loadTodos();
   }
 }
 
-function updateTodo(id, text, completed, date, name, time) {
+function addTodoElement(todo) {
+  const todoEl = document.createElement("li");
+  todoEl.classList.add("todo-item");
+
+  const textNode = document.createElement("span");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = todo.completed;
+
+  const text = document.createTextNode(todo.text);
+  textNode.appendChild(checkbox);
+  textNode.appendChild(text);
+
+  const nameNode = document.createElement("span");
+  nameNode.classList.add("todo-name");
+  const completedText = todo.completedTime ? ` | Completed - ${todo.completedTime}` : '';
+  nameNode.innerText = `${todo.name} - ${todo.time}${completedText}`;
+
+  if (todo.completed) {
+    todoEl.classList.add("completed");
+  }
+
+  todoEl.appendChild(textNode);
+  todoEl.appendChild(nameNode);
+
+  todoEl.addEventListener("click", () => {
+    const isCompleted = !todoEl.classList.contains("completed");
+    todoEl.classList.toggle("completed", isCompleted);
+    checkbox.checked = isCompleted;
+    const completedTime = isCompleted ? getCurrentTime() : null;
+    updateTodo(todo.id, todo.text, isCompleted, todo.date, todo.name, todo.time, completedTime);
+  });
+
+  todoEl.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    if (confirm("Are you sure you want to delete this item?")) {
+      todoEl.remove();
+      deleteTodo(todo.id);
+    }
+  });
+
+  todosUL.appendChild(todoEl);
+}
+
+function updateTodo(id, text, completed, date, name, time, completedTime) {
   const todoRef = ref(db, `todos/${id}`);
-  update(todoRef, { text, completed, date, name, time });
+  update(todoRef, { text, completed, date, name, time, completedTime });
 }
 
 function deleteTodo(id) {
