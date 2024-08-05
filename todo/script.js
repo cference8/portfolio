@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getDatabase, ref, onValue, push, set, update, remove } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
 // Your web app's Firebase configuration
@@ -144,7 +145,7 @@ function addTodoElement(todo) {
   }
 
   const editButton = document.createElement("img");
-  editButton.src = "/images/edit.png";
+  editButton.src = "todo/images/edit.png";
   editButton.classList.add("edit-button");
   if (todo.completed) {
     editButton.style.display = "none";
