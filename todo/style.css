@@ -104,6 +104,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
 }
 
 .todos li.completed {
@@ -137,7 +138,15 @@ small {
     margin-bottom: 1rem;
     text-align: center;
 }
-  
+
+.edit-button {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 768px) {
     h1 {

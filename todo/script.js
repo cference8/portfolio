@@ -143,8 +143,20 @@ function addTodoElement(todo) {
     todoEl.classList.add("completed");
   }
 
+  const editButton = document.createElement("img");
+  editButton.src = "/images/edit.png";
+  editButton.classList.add("edit-button");
+  if (todo.completed) {
+    editButton.style.display = "none";
+  }
+  editButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    editTodoItem(todo);
+  });
+
   todoEl.appendChild(textNode);
   todoEl.appendChild(nameNode);
+  todoEl.appendChild(editButton);
 
   todoEl.addEventListener("click", () => {
     const isCompleted = !todoEl.classList.contains("completed");
@@ -152,6 +164,7 @@ function addTodoElement(todo) {
     checkbox.checked = isCompleted;
     const completedTime = isCompleted ? getCurrentTime() : null;
     updateTodo(todo.id, todo.text, isCompleted, todo.date, todo.name, todo.time, completedTime);
+    editButton.style.display = isCompleted ? "none" : "block";
   });
 
   todoEl.addEventListener("contextmenu", (e) => {
@@ -165,9 +178,17 @@ function addTodoElement(todo) {
   todosUL.appendChild(todoEl);
 }
 
+function editTodoItem(todo) {
+  const newText = prompt("Edit your todo item:", todo.text);
+  if (newText !== null && newText.trim() !== "") {
+    updateTodo(todo.id, newText, todo.completed, todo.date, todo.name, todo.time, todo.completedTime);
+    loadTodos();
+  }
+}
+
 function updateTodo(id, text, completed, date, name, time, completedTime) {
   const todoRef = ref(db, `todos/${id}`);
-  update(todoRef, { text, completed, date, name, time, completedTime });
+  update(todoRef, { text, completed, date, name, time, completedTime: completedTime ?? null });
 }
 
 function deleteTodo(id) {
