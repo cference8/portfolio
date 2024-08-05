@@ -5,11 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToDo App</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" type="module" defer></script>
+    <script src="script.js" type="module"></script>
 </head>
 <body>
     <h1>ToDo</h1>
     <div class="date-display" id="date-display"></div>
+    <div class="overlay" id="overlay">
+        <div class="name-input" id="name-input">
+            <input
+                type="text"
+                id="name"
+                class="input"
+                placeholder="Your name"
+                autocomplete="off"
+            />
+            <button id="save-name">Save</button>
+        </div>
+    </div>
     <form id="form">
         <input
             type="text"

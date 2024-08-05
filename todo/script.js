@@ -19,6 +19,10 @@ const form = document.getElementById("form");
 const input = document.getElementById("input");
 const todosUL = document.getElementById("todos");
 const dateDisplay = document.getElementById("date-display");
+const overlay = document.getElementById("overlay");
+const nameInputDiv = document.getElementById("name-input");
+const nameInput = document.getElementById("name");
+const saveNameButton = document.getElementById("save-name");
 
 // Function to get today's date in MM-DD-YYYY format
 function getTodayDate() {
@@ -29,14 +33,39 @@ function getTodayDate() {
   return `${mm}-${dd}-${yyyy}`;
 }
 
+// Function to get the current time using .toLocaleTimeString()
+function getCurrentTime() {
+  const now = new Date();
+  return now.toLocaleTimeString();
+}
+
 // Display today's date
 function displayDate() {
   const todayDate = getTodayDate();
   dateDisplay.innerHTML = `Today's date: ${todayDate} <br> (List is deleted daily)`;
 }
 
+// Save the name to local storage and database
+function saveName() {
+  const name = nameInput.value.trim();
+  if (name) {
+    localStorage.setItem('name', name);
+    set(ref(db, 'name'), { name });
+    overlay.style.display = 'none';
+    loadTodos();
+  }
+}
+
 // Function to read todos from Firebase
 function loadTodos() {
+  const name = localStorage.getItem('name');
+  if (!name) {
+    overlay.style.display = 'flex';
+    return;
+  } else {
+    overlay.style.display = 'none';
+  }
+
   const todosRef = ref(db, 'todos');
   onValue(todosRef, (snapshot) => {
     const todos = snapshot.val();
@@ -67,7 +96,9 @@ form.addEventListener("submit", (e) => {
   addTodo();
 });
 
-function addTodo(todo = { text: input.value, completed: false, date: getTodayDate() }) {
+saveNameButton.addEventListener('click', saveName);
+
+function addTodo(todo = { text: input.value, completed: false, date: getTodayDate(), name: localStorage.getItem('name'), time: getCurrentTime() }) {
   if (todo.text) {
     const todoEl = document.createElement("li");
     todoEl.classList.add("todo-item");
@@ -82,17 +113,22 @@ function addTodo(todo = { text: input.value, completed: false, date: getTodayDat
     textNode.appendChild(checkbox);
     textNode.appendChild(text);
 
+    const nameNode = document.createElement("span");
+    nameNode.classList.add("todo-name");
+    nameNode.innerText = `${todo.name} - ${todo.time}`;
+
     if (todo.completed) {
       todoEl.classList.add("completed");
     }
 
     todoEl.appendChild(textNode);
+    todoEl.appendChild(nameNode);
 
     todoEl.addEventListener("click", () => {
       const isCompleted = !todoEl.classList.contains("completed");
       todoEl.classList.toggle("completed", isCompleted);
       checkbox.checked = isCompleted;
-      updateTodo(todo.id, textNode.innerText, isCompleted, todo.date);
+      updateTodo(todo.id, textNode.innerText, isCompleted, todo.date, todo.name, todo.time);
     });
 
     todoEl.addEventListener("contextmenu", (e) => {
@@ -110,16 +146,16 @@ function addTodo(todo = { text: input.value, completed: false, date: getTodayDat
       todo.id = newTodoRef.key;
       set(newTodoRef, todo);
     } else {
-      updateTodo(todo.id, todo.text, todo.completed, todo.date);
+      updateTodo(todo.id, todo.text, todo.completed, todo.date, todo.name, todo.time);
     }
 
     input.value = '';
   }
 }
 
-function updateTodo(id, text, completed, date) {
+function updateTodo(id, text, completed, date, name, time) {
   const todoRef = ref(db, `todos/${id}`);
-  update(todoRef, { text, completed, date });
+  update(todoRef, { text, completed, date, name, time });
 }
 
 function deleteTodo(id) {
