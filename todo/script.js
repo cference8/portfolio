@@ -45,12 +45,11 @@ function displayDate() {
   dateDisplay.innerHTML = `Today's date: ${todayDate} <br> (List is deleted daily)`;
 }
 
-// Save the name to local storage and database
+// Save the name to local storage
 function saveName() {
   const name = nameInput.value.trim();
   if (name) {
     localStorage.setItem('name', name);
-    set(ref(db, 'name'), { name });
     overlay.style.display = 'none';
     loadTodos();
   }
@@ -97,6 +96,12 @@ form.addEventListener("submit", (e) => {
 });
 
 saveNameButton.addEventListener('click', saveName);
+
+nameInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    saveName();
+  }
+});
 
 function addTodo(todo = { text: input.value, completed: false, date: getTodayDate(), name: localStorage.getItem('name'), time: getCurrentTime() }) {
   if (todo.text) {
