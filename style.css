@@ -194,8 +194,11 @@ nav a {
 .nav-link:hover {
     text-decoration: none;
     color: #e5d5c0;
+}
+
+.nav-item:hover {
     border-radius: 10px;
-    padding: 10px;
+    padding: 0.5rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
 
