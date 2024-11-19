@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street Address Validator with Column Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        #fileInput, #columnSelect, #campaignSelect {
+            margin: 20px 0;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .invalid {
+            background-color: #f8d7da;
+        }
+        .valid {
+            background-color: #d4edda;
+        }
+    </style>
+</head>
+<body>
+    <h1>Street Address Validator with Column Selection</h1>
+    <input type="file" id="fileInput" accept=".xls,.xlsx,.csv" />
+    <div id="columnSelection">
+        <label for="columnSelect">Select Street Address Column:</label>
+        <select id="columnSelect"></select>
+        <br />
+        <label for="campaignSelect">Select Campaign ID Column:</label>
+        <select id="campaignSelect"></select>
+    </div>
+    <button id="validateButton" disabled>Validate Street Addresses</button>
+    <button id="showAllButton" disabled>Show All Rows</button>
+    <div id="result"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        let parsedRows = []; // Holds parsed rows from the uploaded file
+        let columnNames = []; // Holds column names from the uploaded file
+
+        // Handle file input
+        document.getElementById("fileInput").addEventListener("change", handleFile);
+
+        function handleFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: "array" });
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                parsedRows = XLSX.utils.sheet_to_json(firstSheet);
+
+                if (parsedRows.length > 0) {
+                    populateColumnSelect(Object.keys(parsedRows[0])); // Populate dropdown with column names
+                } else {
+                    alert("The file is empty or not formatted correctly.");
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        /**
+         * Populates the dropdown with column names from the uploaded file.
+         * @param {Array} columns - Array of column names.
+         */
+        function populateColumnSelect(columns) {
+            const streetAddressSelect = document.getElementById("columnSelect");
+            const campaignSelect = document.getElementById("campaignSelect");
+
+            streetAddressSelect.innerHTML = ""; // Clear previous options
+            campaignSelect.innerHTML = ""; // Clear previous options
+
+            columnNames = columns;
+
+            columns.forEach((col) => {
+                const option1 = document.createElement("option");
+                option1.value = col;
+                option1.innerText = col;
+                streetAddressSelect.appendChild(option1);
+
+                const option2 = document.createElement("option");
+                option2.value = col;
+                option2.innerText = col;
+                campaignSelect.appendChild(option2);
+            });
+
+            document.getElementById("validateButton").disabled = false; // Enable the validate button
+            document.getElementById("showAllButton").disabled = false;  // Enable the show-all button
+        }
+
+        // Handle street address validation on button click
+        document.getElementById("validateButton").addEventListener("click", () => {
+            const selectedColumn = document.getElementById("columnSelect").value;
+            const campaignColumn = document.getElementById("campaignSelect").value;
+            validateStreetAddresses(parsedRows, selectedColumn, campaignColumn, false);
+        });
+
+        document.getElementById("showAllButton").addEventListener("click", () => {
+            const selectedColumn = document.getElementById("columnSelect").value;
+            const campaignColumn = document.getElementById("campaignSelect").value;
+            validateStreetAddresses(parsedRows, selectedColumn, campaignColumn, true);
+        });
+
+        /**
+         * Validates the street addresses from the selected column and displays results.
+         * @param {Array} rows - The parsed rows from the uploaded file.
+         * @param {string} streetAddressColumn - The column name to validate street addresses.
+         * @param {string} campaignColumn - The column name to display campaign IDs.
+         * @param {boolean} showAll - Whether to show all rows or only invalid rows.
+         */
+        function validateStreetAddresses(rows, streetAddressColumn, campaignColumn, showAll) {
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = ""; // Clear previous results
+
+            if (!rows[0][streetAddressColumn] || !rows[0][campaignColumn]) {
+                resultDiv.innerHTML = `<p>Please select valid columns for Street Address and Campaign ID.</p>`;
+                return;
+            }
+
+            const allAddresses = rows.map((row, index) => ({
+                row: index + 2,
+                streetAddress: row[streetAddressColumn],
+                campaignId: row[campaignColumn],
+                isValid: isValidStreetAddress(row[streetAddressColumn])
+            }));
+
+            if (showAll) {
+                displayResults(allAddresses, rows.length, true);
+            } else {
+                const invalidAddresses = allAddresses.filter(item => !item.isValid);
+                displayResults(invalidAddresses, rows.length, false);
+            }
+        }
+
+        /**
+         * Checks if a street address is valid.
+         * A valid street address should not contain city, state, zip, or country information.
+         * @param {string} streetAddress - The street address to validate.
+         * @returns {boolean} - True if the street address is valid, false otherwise.
+         */
+        function isValidStreetAddress(streetAddress) {
+            const cityPattern = /, [A-Za-z\s]+,/; // Detects city names (e.g., ", Minneapolis,")
+            const stateZipPattern = / [A-Z]{2},? \d{5}/; // Detects " MN 55413" or " MN, 55413"
+            const countryPattern = /\bUnited States\b/i; // Detects "United States"
+
+            // If any of these patterns are found, the street address is invalid
+            return !(cityPattern.test(streetAddress) || stateZipPattern.test(streetAddress) || countryPattern.test(streetAddress));
+        }
+
+        /**
+         * Displays the validation results in a table format.
+         * @param {Array} addresses - List of street addresses with row numbers, campaign IDs, and validity status.
+         * @param {number} totalRows - Total number of rows processed.
+         * @param {boolean} showAll - Whether to show all rows or only invalid rows.
+         */
+        function displayResults(addresses, totalRows, showAll) {
+            const resultDiv = document.getElementById("result");
+            if (showAll) {
+                resultDiv.innerHTML = `<p>Showing all rows (${addresses.length}): ${totalRows} rows processed.</p>`;
+            } else {
+                resultDiv.innerHTML = `<p>${addresses.length} invalid street address(es) found out of ${totalRows} rows.</p>`;
+            }
+
+            const table = document.createElement("table");
+            const header = table.insertRow();
+            header.insertCell().innerText = "Row";
+            header.insertCell().innerText = "Campaign ID";
+            header.insertCell().innerText = "Street Address";
+            header.insertCell().innerText = "Status";
+
+            addresses.forEach(({ row, campaignId, streetAddress, isValid }) => {
+                const rowEl = table.insertRow();
+                rowEl.insertCell().innerText = row; // Row number
+                rowEl.insertCell().innerText = campaignId || "N/A"; // Campaign ID
+                rowEl.insertCell().innerText = streetAddress; // Street Address
+                rowEl.insertCell().innerText = isValid ? "Valid" : "Invalid"; // Status
+                rowEl.classList.add(isValid ? "valid" : "invalid"); // Apply styling
+            });
+
+            resultDiv.appendChild(table);
+        }
+    </script>
+</body>
+</html>
