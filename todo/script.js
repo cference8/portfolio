@@ -76,13 +76,17 @@ function loadTodos() {
       }));
 
       // Check if the first todo's date is not today, then delete all todos
-      if (todoArray.length > 0 && todoArray[0].date !== getTodayDate()) {
-        deleteAllTodos();
-      } else {
-        todoArray.forEach(todo => {
-          addTodoElement(todo);
-        });
-      }
+      // if (todoArray.length > 0 && todoArray[0].date !== getTodayDate()) {
+      //   deleteAllTodos();
+      // } else {
+      //   todoArray.forEach(todo => {
+      //     addTodoElement(todo);
+      //   });
+      // }
+      // Display todos without deleting
+      todoArray.forEach(todo => {
+        addTodoElement(todo);
+      });
     }
   });
 }
