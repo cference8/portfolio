@@ -42,7 +42,7 @@ function getCurrentTime() {
 // Display today's date
 function displayDate() {
   const todayDate = getTodayDate();
-  dateDisplay.innerHTML = `Today's date: ${todayDate} <br> (List is deleted daily)`;
+  dateDisplay.innerHTML = `Today's date: ${todayDate}`;
 }
 
 // Save the name to local storage
