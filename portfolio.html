@@ -138,6 +138,14 @@
     <!-- bottom of the page content -->
     <div class="clear"></div>
     <!--this is needed to show the main content at the bottom of the page that would be hidden without it-->
+    
+    <!-- Scribe App Button -->
+    <div class="container-fluid text-center" style="padding: 20px 0; margin-bottom: 400px;">
+        <button id="openClozeApp" class="btn btn-primary btn-lg" style="font-size: 18px; padding: 12px 30px;">
+            Open Cloze + Scribe
+        </button>
+    </div>
+    
     <footer>
         <p>
             <a href="mailto:cLaVigne0812@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
@@ -147,6 +155,48 @@
         <a href="/" style="text-decoration: none;"><small>&copy; Chris LaVigne. All rights
                 reserved.</small></a>
     </footer>
+
+    <script>
+        // Open a centered popup window. Must be called from a user gesture (e.g., click).
+        function openCenteredPopup(url, w = 1100, h = 760, {resizable = true} = {}) {
+            const dualScreenLeft = window.screenLeft ?? window.screenX ?? 0;
+            const dualScreenTop  = window.screenTop  ?? window.screenY ?? 0;
+
+            const pageW = window.innerWidth  || document.documentElement.clientWidth  || screen.width;
+            const pageH = window.innerHeight || document.documentElement.clientHeight || screen.height;
+
+            const left = Math.max(0, Math.floor(dualScreenLeft + (pageW - w) / 2));
+            const top  = Math.max(0, Math.floor(dualScreenTop  + (pageH - h) / 2));
+
+            const features = [
+                `width=${Math.floor(w)}`,
+                `height=${Math.floor(h)}`,
+                `left=${left}`,
+                `top=${top}`,
+                `resizable=${resizable ? 'yes' : 'no'}`,
+                'scrollbars=yes',
+                'toolbar=no',
+                'location=no',
+                'status=no',
+                'menubar=no'
+            ].join(',');
+
+            const win = window.open(url, '_blank', features);
+
+            // If blocked, fall back to a full-page redirect
+            if (!win) {
+                window.location.href = url;
+                return;
+            }
+
+            // Some Safari versions ignore sizing/position until after open:
+            try { win.moveTo(left, top); win.resizeTo(w, h); win.focus(); } catch (_) {}
+        }
+
+        document.getElementById('openClozeApp').addEventListener('click', () => {
+            openCenteredPopup('https://cloze-scribe-app-55c627.gitlab.io/', 1100, 760, { resizable: true });
+        });
+    </script>
 </body>
 
 </html>
