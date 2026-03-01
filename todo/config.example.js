@@ -6,3 +6,6 @@ window.TODO_FIREBASE_CONFIG = {
   messagingSenderId: "REPLACE_ME",
   appId: "REPLACE_ME"
 };
+
+// For deployed site: copy values into todo/config.public.js (tracked)
+// For local-only override: use todo/config.js (gitignored)

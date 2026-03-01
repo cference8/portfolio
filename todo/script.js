@@ -3,7 +3,7 @@ import { getDatabase, ref, onValue, push, set, update, remove, get } from "https
 
 const firebaseConfig = window.TODO_FIREBASE_CONFIG;
 if (!firebaseConfig) {
-  throw new Error("Missing Firebase config. Create todo/config.js from todo/config.example.js.");
+  throw new Error("Missing Firebase config. Create todo/config.public.js (or local todo/config.js override).");
 }
 
 const app = initializeApp(firebaseConfig);
