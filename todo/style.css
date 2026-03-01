@@ -344,6 +344,24 @@ small {
   color: var(--text);
 }
 
+.delete-confirm-panel {
+  width: min(100%, 380px);
+}
+
+.delete-confirm-text {
+  margin: 0 0 0.9rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.clear-list-input {
+  margin-top: 0.35rem;
+}
+
+.settings-actions .settings-danger {
+  background: #a32020;
+}
+
 @media only screen and (max-width: 520px) {
   .app-shell {
     padding: 0.8rem 0.55rem 1rem;

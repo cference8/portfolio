@@ -27,6 +27,17 @@ const settingsApplyButton = document.getElementById("settings-apply");
 const settingsCancelButton = document.getElementById("settings-cancel");
 const settingsListSelect = document.getElementById("settings-list-select");
 const settingsDeleteListButton = document.getElementById("settings-delete-list");
+const deleteConfirmOverlay = document.getElementById("delete-confirm-overlay");
+const deleteConfirmCancelButton = document.getElementById("delete-confirm-cancel");
+const deleteConfirmAcceptButton = document.getElementById("delete-confirm-accept");
+const clearListOverlay = document.getElementById("clear-list-overlay");
+const clearListInput = document.getElementById("clear-list-input");
+const clearListCancelButton = document.getElementById("clear-list-cancel");
+const clearListAcceptButton = document.getElementById("clear-list-accept");
+const newListOverlay = document.getElementById("new-list-overlay");
+const newListInput = document.getElementById("new-list-input");
+const newListCancelButton = document.getElementById("new-list-cancel");
+const newListCreateButton = document.getElementById("new-list-create");
 
 const query = new URLSearchParams(window.location.search);
 const modeParam = query.get("mode");
@@ -57,6 +68,12 @@ let activeListId = localStorage.getItem(listStorageKey);
 let stopTodosListener = null;
 let creatingDefaultList = false;
 let listsInitialized = false;
+let deletePromptOpen = false;
+let lastDeletePromptAt = 0;
+let pendingDeleteTodoId = null;
+let pendingDeleteTodoEl = null;
+let clearListPromptOpen = false;
+let newListPromptOpen = false;
 const settingsListsByMode = {
   dev: [],
   prod: []
@@ -115,6 +132,93 @@ function displayDate() {
 
 function updateAdminButtonLabel() {
   adminModeButton.textContent = "Admin Settings";
+}
+
+function openDeleteConfirm(todoId, todoEl) {
+  const now = Date.now();
+  if (deletePromptOpen || now - lastDeletePromptAt < 400) return;
+  lastDeletePromptAt = now;
+  pendingDeleteTodoId = todoId;
+  pendingDeleteTodoEl = todoEl;
+  deletePromptOpen = true;
+  deleteConfirmOverlay.style.display = "flex";
+}
+
+function closeDeleteConfirm() {
+  deletePromptOpen = false;
+  pendingDeleteTodoId = null;
+  pendingDeleteTodoEl = null;
+  deleteConfirmOverlay.style.display = "none";
+}
+
+function acceptDeleteConfirm() {
+  if (pendingDeleteTodoId) {
+    if (pendingDeleteTodoEl) pendingDeleteTodoEl.remove();
+    deleteTodo(pendingDeleteTodoId);
+  }
+  closeDeleteConfirm();
+}
+
+function syncClearListAcceptState() {
+  clearListAcceptButton.disabled = clearListInput.value.trim() !== "clear-list";
+}
+
+function openClearListConfirm() {
+  if (!activeListId || clearListPromptOpen) return;
+  clearListPromptOpen = true;
+  clearListInput.value = "";
+  syncClearListAcceptState();
+  clearListOverlay.style.display = "flex";
+  clearListInput.focus();
+}
+
+function closeClearListConfirm() {
+  clearListPromptOpen = false;
+  clearListInput.value = "";
+  syncClearListAcceptState();
+  clearListOverlay.style.display = "none";
+}
+
+async function acceptClearListConfirm() {
+  if (clearListInput.value.trim() !== "clear-list" || !activeListId) return;
+  try {
+    await remove(ref(db, `${itemsRoot}/${activeListId}`));
+    alert("List items cleared.");
+  } catch (error) {
+    alert("Unable to clear this list.");
+  } finally {
+    closeClearListConfirm();
+  }
+}
+
+function syncNewListCreateState() {
+  newListCreateButton.disabled = !newListInput.value.trim();
+}
+
+function openNewListModal() {
+  if (newListPromptOpen) return;
+  newListPromptOpen = true;
+  newListInput.value = "";
+  syncNewListCreateState();
+  newListOverlay.style.display = "flex";
+  newListInput.focus();
+}
+
+function closeNewListModal() {
+  newListPromptOpen = false;
+  newListInput.value = "";
+  syncNewListCreateState();
+  newListOverlay.style.display = "none";
+}
+
+async function createListFromModal() {
+  const listName = newListInput.value.trim();
+  if (!listName) return;
+  const createdListId = await createList(listName);
+  if (!createdListId) return;
+  listSelect.value = createdListId;
+  subscribeToTodos();
+  closeNewListModal();
 }
 
 async function openAdminSettings() {
@@ -364,25 +468,9 @@ listSelect.addEventListener("change", () => {
   subscribeToTodos();
 });
 
-newListButton.addEventListener("click", async () => {
-  const listName = prompt("New list name:");
-  if (!listName || !listName.trim()) return;
-  await createList(listName);
-});
+newListButton.addEventListener("click", openNewListModal);
 clearListButton.addEventListener("click", async () => {
-  if (!activeListId) return;
-  const typed = prompt("Are you sure you want to clear all items from this list? Type clear-list");
-  if (typed !== "clear-list") {
-    alert("Clear cancelled.");
-    return;
-  }
-
-  try {
-    await remove(ref(db, `${itemsRoot}/${activeListId}`));
-    alert("List items cleared.");
-  } catch (error) {
-    alert("Unable to clear this list.");
-  }
+  openClearListConfirm();
 });
 
 adminModeButton.addEventListener("click", openAdminSettings);
@@ -396,9 +484,40 @@ settingsDeleteListButton.addEventListener("click", deleteManagedList);
 settingsOverlay.addEventListener("click", (e) => {
   if (e.target === settingsOverlay) closeAdminSettings();
 });
+deleteConfirmCancelButton.addEventListener("click", closeDeleteConfirm);
+deleteConfirmAcceptButton.addEventListener("click", acceptDeleteConfirm);
+deleteConfirmOverlay.addEventListener("click", (e) => {
+  if (e.target === deleteConfirmOverlay) closeDeleteConfirm();
+});
+clearListInput.addEventListener("input", syncClearListAcceptState);
+clearListCancelButton.addEventListener("click", closeClearListConfirm);
+clearListAcceptButton.addEventListener("click", acceptClearListConfirm);
+clearListOverlay.addEventListener("click", (e) => {
+  if (e.target === clearListOverlay) closeClearListConfirm();
+});
+newListInput.addEventListener("input", syncNewListCreateState);
+newListInput.addEventListener("keydown", async (e) => {
+  if (e.key === "Enter" && !newListCreateButton.disabled) {
+    await createListFromModal();
+  }
+});
+newListCancelButton.addEventListener("click", closeNewListModal);
+newListCreateButton.addEventListener("click", createListFromModal);
+newListOverlay.addEventListener("click", (e) => {
+  if (e.target === newListOverlay) closeNewListModal();
+});
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && settingsOverlay.style.display === "flex") {
     closeAdminSettings();
+  }
+  if (e.key === "Escape" && deleteConfirmOverlay.style.display === "flex") {
+    closeDeleteConfirm();
+  }
+  if (e.key === "Escape" && clearListOverlay.style.display === "flex") {
+    closeClearListConfirm();
+  }
+  if (e.key === "Escape" && newListOverlay.style.display === "flex") {
+    closeNewListModal();
   }
 });
 
@@ -509,10 +628,7 @@ function addDeleteHandlers(todoEl, todoId) {
       alert("Delete is disabled for this dataset. Enable it in Admin Settings.");
       return;
     }
-    if (confirm("Are you sure you want to delete this item?")) {
-      todoEl.remove();
-      deleteTodo(todoId);
-    }
+    openDeleteConfirm(todoId, todoEl);
   };
 
   todoEl.addEventListener("contextmenu", (e) => {
