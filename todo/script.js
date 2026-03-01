@@ -1,14 +1,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getDatabase, ref, onValue, push, set, update, remove, get } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD7bwY26c19iMTxbZncjQ2iFkKqtcveL3E",
-  authDomain: "todo-8c5d9.firebaseapp.com",
-  projectId: "todo-8c5d9",
-  storageBucket: "todo-8c5d9.appspot.com",
-  messagingSenderId: "398660721038",
-  appId: "1:398660721038:web:31f0c39e339951926aecdf"
-};
+const firebaseConfig = window.TODO_FIREBASE_CONFIG;
+if (!firebaseConfig) {
+  throw new Error("Missing Firebase config. Create todo/config.js from todo/config.example.js.");
+}
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
