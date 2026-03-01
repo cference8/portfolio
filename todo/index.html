@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToDo App</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js" type="module"></script>
 
     <!-- favicon -->
@@ -18,36 +17,72 @@
     <link rel="manifest" href="./favicon/site.webmanifest">
 </head>
 <body>
-    <h1>ToDo</h1>
-    <div class="date-display" id="date-display"></div>
-    <div class="overlay" id="overlay">
-        <div class="name-input" id="name-input">
-            <input
-                type="text"
-                id="name"
-                class="input"
-                placeholder="Your name"
-                autocomplete="off"
-            />
-            <button id="save-name">Save</button>
+    <div class="app-shell">
+        <h1>ToDo</h1>
+        <div class="date-display" id="date-display"></div>
+        <div class="overlay" id="overlay">
+            <div class="name-input" id="name-input">
+                <input
+                    type="text"
+                    id="name"
+                    class="input"
+                    placeholder="Your name"
+                    autocomplete="off"
+                />
+                <button id="save-name">Save</button>
+            </div>
         </div>
+        <div class="overlay" id="settings-overlay">
+            <div class="settings-panel">
+                <h2>Admin Settings</h2>
+                <div class="settings-manage-lists">
+                    <h3>Manage Lists</h3>
+                    <label for="settings-list-select">List</label>
+                    <select id="settings-list-select" class="settings-select"></select>
+                    <div class="settings-list-actions">
+                        <button id="settings-delete-list" type="button" class="settings-danger">Delete List</button>
+                    </div>
+                </div>
+                <div class="settings-admin-controls">
+                    <h3>Admin Controls</h3>
+                    <label for="settings-mode">Dataset</label>
+                    <select id="settings-mode" class="settings-select">
+                        <option value="dev">Development</option>
+                        <option value="prod">Live</option>
+                    </select>
+                    <label class="settings-checkbox">
+                        <input type="checkbox" id="settings-allow-deletes" />
+                        Enable delete actions
+                    </label>
+                </div>
+                <div class="settings-actions">
+                    <button id="settings-cancel" type="button" class="settings-cancel">Cancel</button>
+                    <button id="settings-apply" type="button">Apply</button>
+                </div>
+            </div>
+        </div>
+        <div class="list-controls">
+            <select id="list-select" aria-label="Choose todo list"></select>
+            <button id="new-list-button" type="button">New List</button>
+            <button id="clear-list-button" type="button" class="clear-list-button">Clear List</button>
+            <button id="admin-mode-button" type="button" class="admin-button">Admin Settings</button>
+        </div>
+        <div id="form-container">
+            <form id="form">
+                <input
+                    type="text"
+                    id="input"
+                    class="input"
+                    placeholder="Enter your ToDo"
+                    autocomplete="off"
+                />
+                <ul class="todos" id="todos"></ul>
+            </form>
+        </div>
+        <small>
+            Tap todo to toggle complete. <br />
+            Right click or press and hold to delete.
+        </small>
     </div>
-    <div id="form-container">
-        <form id="form">
-            <input
-                type="text"
-                id="input"
-                class="input"
-                placeholder="Enter your ToDo"
-                autocomplete="off"
-            />
-            <ul class="todos" id="todos"></ul>
-        </form>
-    </div>
-    <small
-        >Left click to toggle complete. <br />
-        Right click to delete the ToDo. <br />
-        Press and Hold to delete on mobile.
-    </small>
 </body>
 </html>

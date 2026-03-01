@@ -1,161 +1,371 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+:root {
+  --bg: #f4f7f5;
+  --card: #ffffff;
+  --text: #22332c;
+  --muted: #60726a;
+  --border: #d8e2dc;
+  --accent: #1d8f4d;
+  --accent-dark: #136236;
+}
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #f5f5f5;
-    color: #444;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    font-family: "Poppins", sans-serif;
-    margin: 0;
-    min-height: 100vh;
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 10%, #e5f4ea 0, transparent 38%),
+    radial-gradient(circle at 90% 0%, #dbeef4 0, transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+}
+
+.app-shell {
+  width: min(100%, 680px);
+  margin: 0 auto;
+  padding: 1rem 0.85rem 1.5rem;
 }
 
 h1 {
-    color: rgb(0 255 8);
-    font-size: 10rem;
-    text-align: center;
-    opacity: 0.4;
-    text-shadow: 1px 1px 2px #000;
-    margin: 0;
+  color: #1fb15f;
+  font-size: clamp(2.7rem, 9.5vw, 5.8rem);
+  text-align: center;
+  opacity: 0.26;
+  text-shadow: 1px 1px 2px #00000024;
+  margin: 0;
+  line-height: 1;
 }
 
 .date-display {
-    font-size: 1.2rem;
-    color: #888;
-    margin: 1rem 0;
-    text-align: center;
+  font-size: clamp(0.8rem, 2.7vw, 1rem);
+  color: var(--muted);
+  margin: 0.6rem 0 1rem;
+  text-align: center;
 }
 
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
+.list-controls {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
 }
 
-.name-input {
-    display: flex;
-    background: white;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.list-controls select,
+.list-controls button {
+  min-height: 44px;
+  border-radius: 0.65rem;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  font-family: inherit;
 }
 
-.name-input input {
-    border: none;
-    color: #444;
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-    width: 200px;
-    margin-left: 0.5rem;
+.list-controls select {
+  background: var(--card);
+  color: var(--text);
+  padding: 0 0.75rem;
 }
 
-.name-input button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
+.list-controls button {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 0 0.95rem;
+  cursor: pointer;
+}
+
+.list-controls button:hover {
+  background: var(--accent-dark);
+}
+
+.list-controls .admin-button {
+  background: #fff;
+  color: var(--accent-dark);
+  border-color: #b6d8c4;
+}
+
+.list-controls .admin-button:hover {
+  background: #eef8f1;
+}
+
+.list-controls .clear-list-button {
+  background: #a86a12;
+}
+
+.list-controls .clear-list-button:hover {
+  background: #8e570d;
 }
 
 form {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-    width: 380px;
+  box-shadow: 0 10px 28px #1016121a;
+  background: var(--card);
+  border-radius: 0.9rem;
+  overflow: hidden;
 }
 
 .input {
-    border: none;
-    color: #444;
-    font-size: 2rem;
-    padding: 1rem 2rem;
-    display: block;
-    width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: clamp(1rem, 3.9vw, 1.45rem);
+  padding: 0.95rem 1rem;
+  display: block;
+  width: 100%;
+  min-height: 50px;
 }
 
 .input::placeholder {
-    color: #d5d5d5;
+  color: #9eb0a7;
+}
+
+.input:focus {
+  outline: 2px solid #89cca3;
+  outline-offset: -2px;
 }
 
 .todos {
-    background-color: #fff;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
+  background: var(--card);
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 
 .todos li {
-    border-top: 1px solid #e5e5e5;
-    cursor: pointer;
-    font-size: 1.5rem;
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
+  border-top: 1px solid #edf2ef;
+  cursor: pointer;
+  font-size: clamp(1rem, 3.8vw, 1.2rem);
+  padding: 0.9rem 3rem 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.todo-text {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.6rem;
+  overflow-wrap: anywhere;
 }
 
 .todos li.completed {
-    color: #b6b6b6;
-    text-decoration: line-through;
+  color: #8c9993;
+  text-decoration: line-through;
 }
 
 .todos input[type="checkbox"] {
-    margin-right: 1rem;
+  margin: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
 }
 
-.todos .todo-name {
-    font-size: 0.8rem;
-    color: grey;
-    margin-top: 0.5rem;
-}
-
+.todos .todo-name,
 .todos .completed-time {
-    font-size: 0.8rem;
-    color: grey;
-    margin-top: 0.5rem;
-}
-
-#save-name {
-    margin-left: 5px;
+  font-size: 0.75rem;
+  color: #7a8a84;
+  margin-top: 0.45rem;
 }
 
 small {
-    color: #b5b5b5;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    text-align: center;
+  display: block;
+  color: #87958f;
+  margin-top: 0.9rem;
+  text-align: center;
+  font-size: 0.84rem;
 }
 
 .edit-button {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    cursor: pointer;
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
-    h1 {
-        font-size: 5rem;
-    }
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000000b8;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
-@media only screen and (max-width: 375px) {
-    form {
-        width: 350px
-    }
+.name-input {
+  width: min(100%, 460px);
+  display: flex;
+  gap: 0.5rem;
+  background: #fff;
+  padding: 0.7rem;
+  border-radius: 0.7rem;
+  box-shadow: 0 10px 22px #00000026;
+}
+
+.name-input input {
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  color: var(--text);
+  font-size: 1rem;
+  padding: 0.65rem 0.8rem;
+  width: 100%;
+  min-height: 44px;
+}
+
+.name-input button {
+  min-height: 44px;
+  border-radius: 0.6rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.95rem;
+  padding: 0 0.95rem;
+  cursor: pointer;
+}
+
+.settings-panel {
+  width: min(100%, 420px);
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 22px #00000026;
+  padding: 1rem;
+}
+
+.settings-panel h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.settings-panel label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.settings-select {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border);
+  padding: 0 0.7rem;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.settings-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.9rem;
+}
+
+.settings-checkbox input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.settings-manage-lists {
+  border-top: 1px solid #e8eeea;
+  margin-top: 0.3rem;
+  padding-top: 0.8rem;
+}
+
+.settings-manage-lists h3,
+.settings-admin-controls h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.settings-admin-controls {
+  border-top: 1px solid #e8eeea;
+  margin-top: 0.3rem;
+  padding-top: 0.8rem;
+}
+
+.settings-list-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.settings-list-actions button {
+  flex: 1;
+  min-height: 42px;
+  border-radius: 0.6rem;
+  border: none;
+  padding: 0 0.85rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+}
+
+.settings-list-actions .settings-danger {
+  background: #a32020;
+}
+
+.settings-list-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+
+.settings-actions button {
+  min-height: 42px;
+  border-radius: 0.6rem;
+  border: none;
+  padding: 0 0.85rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+}
+
+.settings-actions .settings-cancel {
+  background: #eef2ef;
+  color: var(--text);
+}
+
+@media only screen and (max-width: 520px) {
+  .app-shell {
+    padding: 0.8rem 0.55rem 1rem;
+  }
+
+  .list-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .list-controls button {
+    width: 100%;
+  }
+
+  .name-input {
+    flex-direction: column;
+  }
+
+  .settings-actions {
+    flex-direction: column-reverse;
+  }
+
+  .settings-list-actions {
+    flex-direction: column;
+  }
 }
