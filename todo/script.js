@@ -83,14 +83,31 @@ function getModeRoots(mode) {
 
 function getTodayDate() {
   const today = new Date();
-  const dd = String(today.getDate()).padStart(2, "0");
-  const mm = String(today.getMonth() + 1).padStart(2, "0");
-  const yyyy = today.getFullYear();
-  return `${mm}-${dd}-${yyyy}`;
+  return formatDate(today);
 }
 
 function getCurrentTime() {
-  return new Date().toLocaleTimeString();
+  return formatTime(new Date());
+}
+
+function formatDate(dateObj) {
+  const dd = String(dateObj.getDate()).padStart(2, "0");
+  const mm = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const yy = String(dateObj.getFullYear()).slice(-2);
+  return `${dd}/${mm}/${yy}`;
+}
+
+function formatTime(dateObj) {
+  let hours = dateObj.getHours();
+  const minutes = String(dateObj.getMinutes()).padStart(2, "0");
+  const period = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+  const hoursPadded = String(hours).padStart(2, "0");
+  return `${hoursPadded}:${minutes} ${period}`;
+}
+
+function formatTimestamp(dateObj) {
+  return `${formatDate(dateObj)} ${formatTime(dateObj)}`;
 }
 
 function displayDate() {
@@ -392,16 +409,24 @@ document.addEventListener("keydown", (e) => {
 async function addTodo() {
   const text = input.value.trim();
   const name = localStorage.getItem("name");
+  const createdBy = name || "Unknown";
 
   if (!text || !activeListId) return;
+
+  const now = new Date();
+  const createdTimestamp = formatTimestamp(now);
 
   const todo = {
     text,
     completed: false,
-    date: getTodayDate(),
-    name,
-    time: getCurrentTime(),
-    completedTime: null
+    date: formatDate(now),
+    name: createdBy,
+    createdBy,
+    time: formatTime(now),
+    createdTimestamp,
+    completedTime: null,
+    completedTimestamp: null,
+    completedBy: null
   };
 
   const newTodoRef = push(ref(db, `${itemsRoot}/${activeListId}`));
@@ -426,8 +451,15 @@ function addTodoElement(todo) {
 
   const nameNode = document.createElement("span");
   nameNode.classList.add("todo-name");
-  const completedText = todo.completedTime ? ` | Completed - ${todo.completedTime}` : "";
-  nameNode.innerText = `${todo.name || "Unknown"} - ${todo.time || ""}${completedText}`;
+  const createdBy = todo.createdBy || todo.name || "Unknown";
+  const createdTimestamp = todo.createdTimestamp || [todo.date, todo.time].filter(Boolean).join(" ");
+  const completedTimestamp = todo.completedTimestamp || todo.completedTime || "";
+  const completedBy = todo.completedBy || "Unknown";
+  nameNode.innerText = `Created by ${createdBy} - ${createdTimestamp}`;
+
+  const completedNode = document.createElement("span");
+  completedNode.classList.add("completed-time");
+  completedNode.innerText = completedTimestamp ? `Completed by ${completedBy} - ${completedTimestamp}` : "";
 
   if (todo.completed) {
     todoEl.classList.add("completed");
@@ -444,14 +476,30 @@ function addTodoElement(todo) {
 
   todoEl.appendChild(textNode);
   todoEl.appendChild(nameNode);
+  if (completedTimestamp) {
+    todoEl.appendChild(completedNode);
+  }
   todoEl.appendChild(editButton);
 
   todoEl.addEventListener("click", () => {
     const isCompleted = !todoEl.classList.contains("completed");
     todoEl.classList.toggle("completed", isCompleted);
     checkbox.checked = isCompleted;
-    const completedTime = isCompleted ? getCurrentTime() : null;
-    updateTodo(todo.id, todo.text, isCompleted, todo.date, todo.name, todo.time, completedTime);
+    const completedTimestamp = isCompleted ? formatTimestamp(new Date()) : null;
+    const completedBy = isCompleted ? (localStorage.getItem("name") || "Unknown") : null;
+    updateTodo(
+      todo.id,
+      todo.text,
+      isCompleted,
+      todo.date,
+      todo.name,
+      todo.time,
+      todo.completedTime,
+      todo.createdTimestamp,
+      completedTimestamp,
+      todo.createdBy,
+      completedBy
+    );
     editButton.style.display = isCompleted ? "none" : "block";
   });
 
@@ -511,13 +559,49 @@ function addDeleteHandlers(todoEl, todoId) {
 function editTodoItem(todo) {
   const newText = prompt("Edit your todo item:", todo.text);
   if (!newText || !newText.trim()) return;
-  updateTodo(todo.id, newText.trim(), todo.completed, todo.date, todo.name, todo.time, todo.completedTime);
+  updateTodo(
+    todo.id,
+    newText.trim(),
+    todo.completed,
+    todo.date,
+    todo.name,
+    todo.time,
+    todo.completedTime,
+    todo.createdTimestamp,
+    todo.completedTimestamp,
+    todo.createdBy,
+    todo.completedBy
+  );
 }
 
-function updateTodo(id, text, completed, date, name, time, completedTime) {
+function updateTodo(
+  id,
+  text,
+  completed,
+  date,
+  name,
+  time,
+  completedTime,
+  createdTimestamp,
+  completedTimestamp,
+  createdBy,
+  completedBy
+) {
   if (!activeListId) return;
   const todoRef = ref(db, `${itemsRoot}/${activeListId}/${id}`);
-  update(todoRef, { text, completed, date, name, time, completedTime: completedTime ?? null });
+  const safeCreatedBy = createdBy || name || "Unknown";
+  update(todoRef, {
+    text,
+    completed,
+    date,
+    name: safeCreatedBy,
+    createdBy: safeCreatedBy,
+    time,
+    createdTimestamp: createdTimestamp ?? [date, time].filter(Boolean).join(" "),
+    completedTimestamp: completedTimestamp ?? null,
+    completedTime: completedTimestamp ?? completedTime ?? null,
+    completedBy: completedBy ?? null
+  });
 }
 
 function deleteTodo(id) {
