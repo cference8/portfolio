@@ -38,6 +38,10 @@ const newListOverlay = document.getElementById("new-list-overlay");
 const newListInput = document.getElementById("new-list-input");
 const newListCancelButton = document.getElementById("new-list-cancel");
 const newListCreateButton = document.getElementById("new-list-create");
+const noticeOverlay = document.getElementById("notice-overlay");
+const noticeTitle = document.getElementById("notice-title");
+const noticeText = document.getElementById("notice-text");
+const noticeOkButton = document.getElementById("notice-ok");
 
 const query = new URLSearchParams(window.location.search);
 const modeParam = query.get("mode");
@@ -74,6 +78,7 @@ let pendingDeleteTodoId = null;
 let pendingDeleteTodoEl = null;
 let clearListPromptOpen = false;
 let newListPromptOpen = false;
+let noticeOpen = false;
 const settingsListsByMode = {
   dev: [],
   prod: []
@@ -138,6 +143,18 @@ function displayDate() {
 
 function updateAdminButtonLabel() {
   adminModeButton.textContent = "Admin Settings";
+}
+
+function openNotice(message, title = "Notice") {
+  noticeTitle.textContent = title;
+  noticeText.textContent = message;
+  noticeOpen = true;
+  noticeOverlay.style.display = "flex";
+}
+
+function closeNotice() {
+  noticeOpen = false;
+  noticeOverlay.style.display = "none";
 }
 
 function openDeleteConfirm(todoId, todoEl) {
@@ -512,6 +529,10 @@ newListCreateButton.addEventListener("click", createListFromModal);
 newListOverlay.addEventListener("click", (e) => {
   if (e.target === newListOverlay) closeNewListModal();
 });
+noticeOkButton.addEventListener("click", closeNotice);
+noticeOverlay.addEventListener("click", (e) => {
+  if (e.target === noticeOverlay) closeNotice();
+});
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && settingsOverlay.style.display === "flex") {
     closeAdminSettings();
@@ -524,6 +545,9 @@ document.addEventListener("keydown", (e) => {
   }
   if (e.key === "Escape" && newListOverlay.style.display === "flex") {
     closeNewListModal();
+  }
+  if (e.key === "Escape" && noticeOpen) {
+    closeNotice();
   }
 });
 
@@ -643,7 +667,7 @@ function addTodoElement(todo) {
 function addDeleteHandlers(todoEl, todoId) {
   const promptDelete = () => {
     if (!allowDeletes) {
-      alert("Delete is disabled for this dataset. Enable it in Admin Settings.");
+      openNotice("Delete is disabled for this dataset. Enable it in Admin Settings.");
       return;
     }
     openDeleteConfirm(todoId, todoEl);

@@ -109,12 +109,25 @@
                 </div>
             </div>
         </div>
+        <div class="overlay" id="notice-overlay">
+            <div class="settings-panel delete-confirm-panel">
+                <h2 id="notice-title">Notice</h2>
+                <p id="notice-text" class="delete-confirm-text"></p>
+                <div class="settings-actions">
+                    <button id="notice-ok" type="button" class="settings-cancel">OK</button>
+                </div>
+            </div>
+        </div>
         <div class="list-controls">
             <select id="list-select" aria-label="Choose todo list"></select>
             <button id="new-list-button" type="button">New List</button>
             <button id="clear-list-button" type="button" class="clear-list-button">Clear List</button>
             <button id="admin-mode-button" type="button" class="admin-button">Admin Settings</button>
         </div>
+        <small>
+            Tap todo to toggle complete. <br />
+            Right click or press and hold to delete.
+        </small>
         <div id="form-container">
             <form id="form">
                 <input
@@ -127,10 +140,6 @@
                 <ul class="todos" id="todos"></ul>
             </form>
         </div>
-        <small>
-            Tap todo to toggle complete. <br />
-            Right click or press and hold to delete.
-        </small>
     </div>
 </body>
 </html>
