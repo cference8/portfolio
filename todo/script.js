@@ -206,9 +206,9 @@ async function acceptClearListConfirm() {
   if (clearListInput.value.trim() !== "clear-list" || !activeListId) return;
   try {
     await remove(ref(db, `${itemsRoot}/${activeListId}`));
-    alert("List items cleared.");
+    openNotice("List items cleared.", "Success");
   } catch (error) {
-    alert("Unable to clear this list.");
+    openNotice("Unable to clear this list.", "Error");
   } finally {
     closeClearListConfirm();
   }
