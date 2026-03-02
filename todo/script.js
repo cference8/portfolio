@@ -103,6 +103,12 @@ function getCurrentTime() {
   return formatTime(new Date());
 }
 
+function getCurrentUserName() {
+  const name = localStorage.getItem("name");
+  const trimmed = (name || "").trim();
+  return trimmed || null;
+}
+
 function formatDate(dateObj) {
   const mm = String(dateObj.getMonth() + 1).padStart(2, "0");
   const dd = String(dateObj.getDate()).padStart(2, "0");
@@ -523,8 +529,7 @@ document.addEventListener("keydown", (e) => {
 
 async function addTodo() {
   const text = input.value.trim();
-  const name = localStorage.getItem("name");
-  const createdBy = name || "Unknown";
+  const createdBy = getCurrentUserName() || "Unknown";
 
   if (!text || !activeListId) return;
 
@@ -598,10 +603,23 @@ function addTodoElement(todo) {
 
   todoEl.addEventListener("click", () => {
     const isCompleted = !todoEl.classList.contains("completed");
+    const currentUserName = getCurrentUserName();
+    if (isCompleted && !currentUserName) {
+      alert("Please set your name before completing items.");
+      overlay.style.display = "flex";
+      return;
+    }
     todoEl.classList.toggle("completed", isCompleted);
     checkbox.checked = isCompleted;
     const completedTimestamp = isCompleted ? formatTimestamp(new Date()) : null;
-    const completedBy = isCompleted ? (localStorage.getItem("name") || "Unknown") : null;
+    const completedBy = isCompleted ? currentUserName : null;
+
+    // Keep local object in sync to avoid stale follow-up writes before realtime refresh.
+    todo.completed = isCompleted;
+    todo.completedTimestamp = completedTimestamp;
+    todo.completedTime = completedTimestamp;
+    todo.completedBy = completedBy;
+
     updateTodo(
       todo.id,
       todo.text,
@@ -702,6 +720,7 @@ function updateTodo(
   if (!activeListId) return;
   const todoRef = ref(db, `${itemsRoot}/${activeListId}/${id}`);
   const safeCreatedBy = createdBy || name || "Unknown";
+  const safeCompletedBy = completed ? (completedBy || getCurrentUserName() || safeCreatedBy) : null;
   update(todoRef, {
     text,
     completed,
@@ -712,7 +731,7 @@ function updateTodo(
     createdTimestamp: createdTimestamp ?? [date, time].filter(Boolean).join(" "),
     completedTimestamp: completedTimestamp ?? null,
     completedTime: completedTimestamp ?? completedTime ?? null,
-    completedBy: completedBy ?? null
+    completedBy: safeCompletedBy
   });
 }
 
